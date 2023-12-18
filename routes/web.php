@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\user\HomePageController;
+use App\Http\Controllers\login\LoginController;
+use App\Http\Controllers\login\RegisterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+#route client
+Route::prefix('/')->group(function(){
+    #Home product
+    Route::get('',[HomePageController::class,'index'])->name("home");
+
+    #Login
+    Route::get('/user/login',[LoginController::class,'index'])->name('login');
+    Route::post('/user/login',[LoginController::class,'store']);
+    Route::get('/user/logout',[LoginController::class,'logout']);
+
+    Route::get('/user/register',[RegisterController::class,'register']);
+    Route::post('/user/register',[RegisterController::class,'store']);
+
 });
