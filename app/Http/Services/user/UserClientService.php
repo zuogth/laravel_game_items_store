@@ -14,8 +14,9 @@ class UserClientService
     {
         try{
             $user=User::create([
-                'fullname'=>(string)$request->input('fullname'),
+                'full_name'=>(string)$request->input('fullname'),
                 'phone'=>(string)$request->input('phone'),
+                'email'=>(string)$request->input('email'),
                 'password'=>bcrypt((string)$request->input('password')),
                 'role'=>'KH',
                 'status'=>'1'

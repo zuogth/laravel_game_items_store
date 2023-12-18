@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
       integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <!-- icheck bootstrap -->
-{{--    <link rel="stylesheet" href="/template/user/plugins/icheck-bootstrap/bootstrap.min.css">--}}
-    <link rel="stylesheet" href="/template/user/plugins/icheck-bootstrap/dataTables.bootstrap4.min.css">
+
   <!-- Theme style -->
   <link rel="stylesheet" href="/template/user/dist/css/adminlte.min.css">
 <link rel="stylesheet" href="/template/user/dist/css/custom.css">

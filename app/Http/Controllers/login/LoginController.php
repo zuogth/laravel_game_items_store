@@ -6,9 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Services\user\UserClientService;
 
 class LoginController extends Controller
 {
+    protected UserClientService $userService;
+
+    public function __construct(UserClientService $userService)
+    {
+        $this->userService=$userService;
+    }
+
     public function index(){
         return view('login.login',[
             'title'=>'Login'
@@ -18,14 +28,15 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         $credentials=$request->validate([
-            'phone'=>'required',
+            'email'=>'required',
             'password'=>'required'
         ]);
+
         if(Auth::attempt($credentials,$request->input('remember'))){
-            
+
             $user=Auth::user();
             if($user->status!=0){
-                if($user->roles[0]->rolecode=='QL'){
+                if($user->role=='QL'){
                     return redirect()->route('admin');
                 }
                 return redirect()->route('home');
@@ -34,8 +45,8 @@ class LoginController extends Controller
                 Session::flash('error','Tài khoản đã bị khóa');
                 return redirect()->back();
             }
-
         }
+
         Session::flash('error','Tài khoản hoặc mật khẩu không chính xác');
         return redirect()->back();
     }
@@ -44,7 +55,7 @@ class LoginController extends Controller
     {
         $user = Auth::user();
         if($user){
-            if ($user->roles[0]->rolecode == 'QL') {
+            if ($user->roles == 'QL') {
                 Auth::logout();
                 return redirect()->route('login');
             }
