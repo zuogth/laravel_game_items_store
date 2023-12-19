@@ -17,11 +17,11 @@
             <a href="#" class="d-block">{{\Illuminate\Support\Facades\Auth::user()->full_name}}</a>
           </div>
             <div class="info">
-                <a href="/user/logout" class="d-block" style="text-decoration: underline"><i class="fas fa-sign-out-alt"></i></a>
+                <a href="/logout" class="d-block" style="text-decoration: underline"><i class="fas fa-sign-out-alt"></i></a>
             </div>
         @else
         <div class="info">
-            <a href="/user/login" class="d-block">Đăng nhập</a>
+            <a href="/login" class="d-block">Đăng nhập</a>
           </div>
         @endif
       </div>
