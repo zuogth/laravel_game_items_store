@@ -25,21 +25,21 @@ function validation(options){
                 default:
                     var errorMessage = rules[i](inputElement.value)
             }
-           
+
             if(errorMessage) break;
         }
-     
+
         if(errorMessage){
             spanElement.innerText = errorMessage;
             errorElement.classList.add('invalid')
-        } 
+        }
         else{
             spanElement.innerText = '';
             errorElement.classList.remove('invalid')
         }
         return !errorMessage
     }
-    // sử dụng DOM lấy dữ liệu chuyển vào validate() 
+    // sử dụng DOM lấy dữ liệu chuyển vào validate()
     var formElement = document.querySelector(options.form);
     if(formElement){
         // sử lý sumbit
@@ -67,8 +67,8 @@ function validation(options){
                                     return values
                                 }
                                 if(!Array.isArray(values[input.name])){
-                                    values[input.name] = []                                  
-                                } 
+                                    values[input.name] = []
+                                }
                                 values[input.name].push(input.value)
                                 break;
                             case "radio":
@@ -76,7 +76,7 @@ function validation(options){
                                     values[input.name] = input.value
                                     return values
                                 }
-                           
+
                                 break;
                             case "file":
                                 values[input.name] = input.files
@@ -107,7 +107,7 @@ function validation(options){
             Array.from(inputElements).forEach(inputElement =>{
                 var errorElement =getParentInput(inputElement,options.formGroupSelector)
                 if(inputElement){
-                
+
                         inputElement.onblur = ()=>{
                             validate(inputElement,errorElement,rule)
                         }
@@ -115,7 +115,7 @@ function validation(options){
                             errorElement.querySelector(options.error).innerText = ''
                             errorElement.classList.remove('invalid')
                         }
-                    } 
+                    }
             });
         });
 }
@@ -144,6 +144,24 @@ validation.isMinLength = function(selector, min , message){
         selector:selector,
         test:function(value){
             return value.trim().length >= min ? undefined: message || `độ dài phải lớn hơn hoặc bằng ${min} kí tự`
+        }
+    }
+}
+
+validation.isMin = function(selector, min , message){
+    return {
+        selector:selector,
+        test:function(value){
+            return value > min ? undefined: message || `giá trị phải lớn hơn ${min}`
+        }
+    }
+}
+
+validation.isMax = function(selector, max , message){
+    return {
+        selector:selector,
+        test:function(value){
+            return value <= max ? undefined: message || `giá trị phải nhỏ hơn hoặc bằng ${max}`
         }
     }
 }

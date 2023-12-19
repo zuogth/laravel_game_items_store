@@ -5,6 +5,8 @@ namespace App\Http\Controllers\product;
 use App\Http\Controllers\Controller;
 use App\Http\Services\product\ProductServiceClient;
 use Illuminate\Http\Request;
+use App\Models\Product;
+
 
 class ProductController extends Controller
 {
@@ -16,7 +18,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = array();
+
         $products=$this->productService->findAll();
 
         return view('product.products',[
@@ -24,4 +26,17 @@ class ProductController extends Controller
             'products'=>$products
         ]);
     }
+
+    public function show($code)
+    {
+
+        $product=$this->productService->findByCode($code);
+
+        return view('product.show',[
+            'title'=>$product->name,
+            'product'=>$product
+        ]);
+    }
+
+    
 }

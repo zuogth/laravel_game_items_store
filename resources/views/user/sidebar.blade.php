@@ -44,29 +44,14 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="/user/user/list" class="nav-link">
-                    <i class="nav-icon fas fa-users"></i>
+                <a href="/" class="nav-link">
+                    <i class="nav-icon fas fa-home"></i>
                     <p>
-                        Tài khoản
+                        Trang chủ
                     </p>
                 </a>
             </li>
-            <li class="nav-item">
-            <a href="/user/category/list" class="nav-link">
-                <i class="nav-icon fas fa-bars"></i>
-              <p>
-                Thể loại
-              </p>
-            </a>
           </li>
-            <li class="nav-item">
-                <a href="/user/speciality/list" class="nav-link">
-                    <i class="fab fa-product-hunt nav-icon"></i>
-                    <p>
-                        Đặc tính
-                    </p>
-                </a>
-            </li>
             <li class="nav-item">
                 <a href="/user/product/list" class="nav-link">
                     <i class="nav-icon fas fa-store"></i>
@@ -79,52 +64,16 @@
                     <li class="nav-item">
                         <a href="/user/product/list/ti-vi" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Ti vi</p>
+                            <p>Sản phẩm 1</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="/user/product/list/tu-lanh" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Tủ lạnh</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/user/product/list/dieu-hoa" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Điều hòa</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/user/product/list/may-giat" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Máy giặt</p>
+                            <p>Sản phẩm 2</p>
                         </a>
                     </li>
                 </ul>
-            </li>
-            <li class="nav-item">
-                <a href="/user/comment/list" class="nav-link">
-                    <i class="fas fa-comment nav-icon"></i>
-                    <p>
-                        Đánh giá
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/user/bill/list" class="nav-link">
-                    <i class="fas fa-money-bill nav-icon"></i>
-                    <p>
-                        Hóa đơn bán
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/user/receipt/list" class="nav-link">
-                    <i class="fas fa-receipt nav-icon"></i>
-                    <p>
-                        Hóa đơn nhập
-                    </p>
-                </a>
             </li>
         </ul>
       </nav>

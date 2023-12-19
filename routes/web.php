@@ -5,6 +5,9 @@ use App\Http\Controllers\user\HomePageController;
 use App\Http\Controllers\login\LoginController;
 use App\Http\Controllers\login\RegisterController;
 use App\Http\Controllers\product\ProductController;
+use App\Http\Controllers\bill\BillController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,4 +34,9 @@ Route::prefix('/')->group(function(){
 
     #Products
     Route::get('/products',[ProductController::class,'index']);
+    Route::get('/products/{code}',[ProductController::class,'show']);
+
+    #Bill
+    Route::post('/products/{code}',[BillController::class,'store']);
+
 });

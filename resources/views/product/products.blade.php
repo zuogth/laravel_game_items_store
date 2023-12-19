@@ -24,7 +24,7 @@
                             <td>{{$product->now_available}}</td>
                             <td>{{$product->sold}}</td>
                             <td>
-                                <a href="" class="btn btn-primary btn-sm">Mua</a>
+                                <a href="/products/{{$product->code}}" class="btn btn-primary btn-sm">Mua</a>
                             </td>
                         </tr>
                     @endforeach
