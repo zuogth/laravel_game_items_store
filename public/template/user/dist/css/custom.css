@@ -1,27 +1,40 @@
-table.custom thead tr th{text-align: center}
-td.status-cus{text-align: center}
-.quantity-prod{
+table.custom thead tr th {
+    text-align: center
+}
+
+td.status-cus {
+    text-align: center
+}
+
+.quantity-prod {
     display: flex;
     align-items: baseline;
 }
-div#addImages{display: contents;}
-label#select_img{
+
+div#addImages {
+    display: contents;
+}
+
+label#select_img {
     width: 100%;
     height: auto;
     border: 1px solid silver;
 }
 
-label#select_imgs{
+label#select_imgs {
     width: 6rem;
     height: auto;
     border: 1px solid silver;
 }
-#orderMoney{
+
+#orderMoney {
     cursor: pointer;
 }
-.err-register{
+
+.err-register {
     margin-top: 1rem !important;
 }
+
 .alert-noti {
     max-width: 20rem;
     position: fixed;
@@ -33,15 +46,23 @@ label#select_imgs{
     word-break: break-word;
     box-shadow: 0 3px 3px black;
 }
-.alert-noti .close-alert{
+
+.alert-noti .close-alert {
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
     right: 12px;
     cursor: pointer;
 }
-.mb-3{margin: 0!important;}
-.errorMessage{color: red;}
+
+.mb-3 {
+    margin: 0 !important;
+}
+
+.errorMessage {
+    color: red;
+}
+
 .form-group-cus {
     position: relative;
 }
@@ -70,3 +91,4 @@ label#select_imgs{
     background-color: aliceblue;
     cursor: pointer;
 }
+

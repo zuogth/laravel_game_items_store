@@ -1,0 +1,15 @@
+{
+    "sSearch": "Tìm Kiếm:",
+    "info": "Từ _START_ đến _END_ / _TOTAL_ kết quả",
+    "sLengthMenu": "Hiển Thị _MENU_ Sản Phẩm",
+    "oPaginate": {
+        "sFirst": "<i class=\"far fa-chevron-double-left\"></i>",
+        "sLast": "<i class=\"far fa-chevron-double-right\"></i>",
+        "sNext": "<i class=\"far fa-chevron-right\"></i>",
+        "sPrevious": "<i class=\"far fa-chevron-left\"></i>"
+    },
+    "emptyTable": "Không Có Dữ Liệu",
+    "infoFiltered": "",
+    "sZeroRecords": "Không Có Kết Quả Tìm Kiếm",
+    "infoEmpty": "Từ 0 đến 0 / 0 kết quả"
+}

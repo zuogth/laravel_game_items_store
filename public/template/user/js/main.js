@@ -3,7 +3,8 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-function removeRow(id,url){
+
+function removeRow(id, url) {
     Swal.fire({
         title: 'Bạn có chắc muốn xóa không?',
         icon: 'warning',
@@ -11,23 +12,23 @@ function removeRow(id,url){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Xóa',
-        cancelButtonText:'Hủy'
+        cancelButtonText: 'Hủy'
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url:url,
-                type:'delete',
-                datatype:'JSON',
-                data:{id},
-                success:function(rs){
-                    if(!rs.error){
+                url: url,
+                type: 'delete',
+                datatype: 'JSON',
+                data: {id},
+                success: function (rs) {
+                    if (!rs.error) {
                         Swal.fire(
                             'Đã xóa!',
                             'success'
-                        ).then((result)=>{
+                        ).then((result) => {
                             location.reload();
                         })
-                    }else{
+                    } else {
                         Swal.fire(
                             'Lỗi!',
                             'Xảy ra lỗi, vui lòng thử lại.',
@@ -40,28 +41,28 @@ function removeRow(id,url){
     })
 }
 
-function selectImg(event){
-    let img=$(event).attr("data-img");
-    $('#file').change(function(){
-        const form=new FormData();
-        form.append('file',$(this)[0].files[0]);
+function selectImg(event) {
+    let img = $(event).attr("data-img");
+    $('#file').change(function () {
+        const form = new FormData();
+        form.append('file', $(this)[0].files[0]);
         $.ajax({
-            processData:false,
-            contentType:false,
-            datatype:'JSON',
-            type:'POST',
-            data:form,
-            url:'/admin/upload',
-            success:function(result){
-                if(!result.error){
-                    $('img#'+img).attr("src",result.url);
-                    $('input#'+img).val(result.url);
-                    img="";
-                }else{
+            processData: false,
+            contentType: false,
+            datatype: 'JSON',
+            type: 'POST',
+            data: form,
+            url: '/admin/upload',
+            success: function (result) {
+                if (!result.error) {
+                    $('img#' + img).attr("src", result.url);
+                    $('input#' + img).val(result.url);
+                    img = "";
+                } else {
                     alert("Upload image error");
                 }
             },
-            error:function (){
+            error: function () {
                 alert("Error!");
             }
         })
@@ -95,17 +96,17 @@ function selectImg(event){
 
 
 //Sắp xếp bằng ajax
-function orderMoney(event){
-    let order=$(event).attr("data-by");
-    let code=$(event).attr("data-cate");
+function orderMoney(event) {
+    let order = $(event).attr("data-by");
+    let code = $(event).attr("data-cate");
     $.ajax({
-        datatype:'JSON',
-        type:'GET',
-        data: {order,code},
-        url:'/admin/product/order',
-        success:function(result){
-            let html='';
-            for(let item of result.products) {
+        datatype: 'JSON',
+        type: 'GET',
+        data: {order, code},
+        url: '/admin/product/order',
+        success: function (result) {
+            let html = '';
+            for (let item of result.products) {
                 html += `<tr>
                             <td>${item.id}</td>
                             <td>${item.productname}</td>
@@ -124,52 +125,54 @@ function orderMoney(event){
                         </tr>`;
             }
             $('tbody#table-products').html(html);
-            if(order=='asc'){
-                $('th#orderMoney').attr("data-by","desc");
-            }else{
-                $('th#orderMoney').attr("data-by","asc");
+            if (order == 'asc') {
+                $('th#orderMoney').attr("data-by", "desc");
+            } else {
+                $('th#orderMoney').attr("data-by", "asc");
             }
 
         },
-        error:function (){
+        error: function () {
             alert("Error!");
         }
     });
     $('#table-data').DataTable();
 }
+
 //id="orderMoney" onclick="orderMoney(this)" data-by="asc" data-cate="{{$code}}"
 
-function addImages(event){
-    let i=Number($(event).attr("data-count"));
+function addImages(event) {
+    let i = Number($(event).attr("data-count"));
     $('input#countImg').val(i);
-    html=`
+    html = `
         <label id="select_imgs" for="file" data-img="image-${i}" onclick="selectImg(this)">
             <img src="" id="image-${i}" alt='Thêm ảnh' style='width:100%;'>
         </label>
         <input type="hidden" name="images-${i}" id="image-${i}">`
     $('div#addImages').append(html);
-    i=i+1;
-    $(event).attr("data-count",i);
+    i = i + 1;
+    $(event).attr("data-count", i);
 }
 
-function toMoney(totalprice){
+function toMoney(totalprice) {
     return totalprice.toLocaleString('it-IT', {
         style: 'currency',
         currency: 'VND'
     });
 }
+
 //Update status
-function updateStatus(element,id,status){
-    let table=$(element).attr("table");
+function updateStatus(element, id, status) {
+    let table = $(element).attr("table");
     $.ajax({
-        url:'/admin/status',
-        type:'PUT',
-        datatype:'JSON',
-        data:{status,table,id},
-        success:function (result){
+        url: '/admin/status',
+        type: 'PUT',
+        datatype: 'JSON',
+        data: {status, table, id},
+        success: function (result) {
             location.reload();
         },
-        error:function (){
+        error: function () {
             Swal.fire(
                 'Lỗi!',
                 'Xảy ra lỗi, vui lòng thử lại.',
@@ -180,19 +183,19 @@ function updateStatus(element,id,status){
 }
 
 
-$(document).ready(function (){
-    $('td select').change(function (){
-        let status=$(this).val();
-        let id=$(this).parents('tr').children().eq(0).html();
+$(document).ready(function () {
+    $('td select').change(function () {
+        let status = $(this).val();
+        let id = $(this).parents('tr').children().eq(0).html();
         $.ajax({
-            url:'/admin/bill/edit/'+id,
-            type:'put',
-            datatype:'JSON',
-            data:{status},
-            success:function (result){
+            url: '/admin/bill/edit/' + id,
+            type: 'put',
+            datatype: 'JSON',
+            data: {status},
+            success: function (result) {
                 location.reload();
             },
-            error:function (){
+            error: function () {
                 Swal.fire(
                     'Lỗi!',
                     'Xảy ra lỗi, vui lòng thử lại.',

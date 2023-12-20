@@ -10,24 +10,24 @@
             <br/>
             <table class="table" id="table-data">
                 <thead>
-                    <th>Sản phẩm</th>
-                    <th>Giá</th>
-                    <th>Hiện có</th>
-                    <th>Đã bán</th>
-                    <th style="width:10%">&nbsp;</th>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>Hiện có</th>
+                <th>Đã bán</th>
+                <th style="width:10%">&nbsp;</th>
                 </thead>
                 <tbody>
-                    @foreach($products as $product)
-                        <tr>
-                            <td>{{$product->name}}</td>
-                            <td>{{$product->price}}</td>
-                            <td>{{$product->now_available}}</td>
-                            <td>{{$product->sold}}</td>
-                            <td>
-                                <a href="/products/{{$product->code}}" class="btn btn-primary btn-sm">Mua</a>
-                            </td>
-                        </tr>
-                    @endforeach
+                @foreach($products as $product)
+                    <tr>
+                        <td>{{$product->name}}</td>
+                        <td>{{$product->price}}</td>
+                        <td>{{$product->now_available}}</td>
+                        <td>{{$product->sold}}</td>
+                        <td>
+                            <a href="/products/{{$product->code}}" class="btn btn-primary btn-sm">Mua</a>
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

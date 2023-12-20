@@ -13,7 +13,7 @@
     </div>
     <script>
         // Add a timeout to close the alert after 5000 milliseconds (5 seconds)
-        setTimeout(function(){
+        setTimeout(function () {
             closeAlert('.alert-warning');
         }, 5000);
 
@@ -31,7 +31,7 @@
     </div>
     <script>
         // Add a timeout to close the alert after 5000 milliseconds (5 seconds)
-        setTimeout(function(){
+        setTimeout(function () {
             closeAlert('.alert-success');
         }, 5000);
 

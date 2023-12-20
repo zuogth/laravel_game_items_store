@@ -1,78 +1,79 @@
-function validation(options){
+function validation(options) {
     var selectorRules = {}
+
     //  funtion lấy ra parent của ô input
-    function getParentInput(element , selector){
-            while(element.parentElement){
-                if(element.parentElement.matches(selector))
+    function getParentInput(element, selector) {
+        while (element.parentElement) {
+            if (element.parentElement.matches(selector))
 
                 return element.parentElement
 
-                element = element.parentElement
-            }
+            element = element.parentElement
+        }
     }
 
     //  funtion validate
-    function validate(inputElement , errorElement , rule){
+    function validate(inputElement, errorElement, rule) {
         var spanElement = errorElement.querySelector(options.error)
         var rules = selectorRules[rule.selector];
-        for(let i = 0; i< rules.length ;++i){
+        for (let i = 0; i < rules.length; ++i) {
 
-            switch(inputElement.type){
+            switch (inputElement.type) {
                 case"radio":
                 case"checkbox":
-                     var errorMessage = rules[i](formElement.querySelector(rule.selector + ':checked'))
-                     break;
+                    var errorMessage = rules[i](formElement.querySelector(rule.selector + ':checked'))
+                    break;
                 default:
                     var errorMessage = rules[i](inputElement.value)
             }
 
-            if(errorMessage) break;
+            if (errorMessage) break;
         }
 
-        if(errorMessage){
+        if (errorMessage) {
             spanElement.innerText = errorMessage;
             errorElement.classList.add('invalid')
-        }
-        else{
+        } else {
             spanElement.innerText = '';
             errorElement.classList.remove('invalid')
         }
         return !errorMessage
     }
+
     // sử dụng DOM lấy dữ liệu chuyển vào validate()
     var formElement = document.querySelector(options.form);
-    if(formElement){
+    if (formElement) {
         // sử lý sumbit
 
-        formElement.onsubmit = (e) =>{
+        formElement.onsubmit = (e) => {
             e.preventDefault();
             var isFormValid = true;
-            options.rules.forEach(rule =>{
+            options.rules.forEach(rule => {
                 var inputElements = formElement.querySelectorAll(rule.selector)
-                Array.from(inputElements).forEach(inputElement =>{
-                    var errorElement =getParentInput(inputElement,options.formGroupSelector)
-                    var isValid = validate(inputElement,errorElement,rule) // có value trả về true , ko thì trả về false
-                    if(!isValid){
+                Array.from(inputElements).forEach(inputElement => {
+                    var errorElement = getParentInput(inputElement, options.formGroupSelector)
+                    var isValid = validate(inputElement, errorElement, rule) // có value trả về true , ko thì trả về false
+                    if (!isValid) {
                         isFormValid = false;
                     }
                 })
-             })
-            if(isFormValid){
-                if(typeof options.onSubmit === 'function'){
+            })
+            if (isFormValid) {
+                if (typeof options.onSubmit === 'function') {
                     var enableInput = formElement.querySelectorAll('[name]')
-                    var formValues = Array.from(enableInput).reduce( function(values , input){
-                        switch(input.type){
+                    var formValues = Array.from(enableInput).reduce(function (values, input) {
+                        switch (input.type) {
                             case "checkbox":
-                                if(!input.checked){
+                                if (!input.checked) {
                                     return values
                                 }
-                                if(!Array.isArray(values[input.name])){
+                                if (!Array.isArray(values[input.name])) {
                                     values[input.name] = []
                                 }
                                 values[input.name].push(input.value)
                                 break;
                             case "radio":
-                                if(input.checked){
+                                if (input.checked) {
                                     values[input.name] = input.value
                                     return values
                                 }
@@ -84,12 +85,12 @@ function validation(options){
                             default:
                                 values[input.name] = input.value
                         }
-                           console.log(input)
-                            return values
-                    },{})
+                        console.log(input)
+                        return values
+                    }, {})
                     formElement.submit()
                     // options.onSubmit(formValues)
-                } else{
+                } else {
                     // ko có onSumbit
                     formElement.submit()
                 }
@@ -98,88 +99,89 @@ function validation(options){
 
         // lặp rules
         options.rules.forEach(rule => {
-            if(Array.isArray(selectorRules[rule.selector])){
+            if (Array.isArray(selectorRules[rule.selector])) {
                 selectorRules[rule.selector].push(rule.test)
-            } else{
+            } else {
                 selectorRules[rule.selector] = [rule.test];
             }
             var inputElements = formElement.querySelectorAll(rule.selector)
-            Array.from(inputElements).forEach(inputElement =>{
-                var errorElement =getParentInput(inputElement,options.formGroupSelector)
-                if(inputElement){
+            Array.from(inputElements).forEach(inputElement => {
+                var errorElement = getParentInput(inputElement, options.formGroupSelector)
+                if (inputElement) {
 
-                        inputElement.onblur = ()=>{
-                            validate(inputElement,errorElement,rule)
-                        }
-                        inputElement.oninput = () =>{
-                            errorElement.querySelector(options.error).innerText = ''
-                            errorElement.classList.remove('invalid')
-                        }
+                    inputElement.onblur = () => {
+                        validate(inputElement, errorElement, rule)
                     }
+                    inputElement.oninput = () => {
+                        errorElement.querySelector(options.error).innerText = ''
+                        errorElement.classList.remove('invalid')
+                    }
+                }
             });
         });
+    }
 }
-}
+
 // yêu cầu nhập trường này
-validation.isRequired = function(selector , message){
+validation.isRequired = function (selector, message) {
     return {
-        selector:selector,
-        test:function(value){
-            return value ? undefined: message || 'vui lòng nhập trường này'
+        selector: selector,
+        test: function (value) {
+            return value ? undefined : message || 'vui lòng nhập trường này'
         }
     }
 }
 
-validation.isEmail = (selector,message) => {
-    return{
-        selector:selector,
-        test : (value)=>{
-            regex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+validation.isEmail = (selector, message) => {
+    return {
+        selector: selector,
+        test: (value) => {
+            regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
             return regex.test(value) ? undefined : message || "trường này phải là email"
         }
     }
 }
-validation.isMinLength = function(selector, min , message){
+validation.isMinLength = function (selector, min, message) {
     return {
-        selector:selector,
-        test:function(value){
-            return value.trim().length >= min ? undefined: message || `độ dài phải lớn hơn hoặc bằng ${min} kí tự`
+        selector: selector,
+        test: function (value) {
+            return value.trim().length >= min ? undefined : message || `độ dài phải lớn hơn hoặc bằng ${min} kí tự`
         }
     }
 }
 
-validation.isMin = function(selector, min , message){
+validation.isMin = function (selector, min, message) {
     return {
-        selector:selector,
-        test:function(value){
-            return value > min ? undefined: message || `giá trị phải lớn hơn ${min}`
+        selector: selector,
+        test: function (value) {
+            return value > min ? undefined : message || `giá trị phải lớn hơn ${min}`
         }
     }
 }
 
-validation.isMax = function(selector, max , message){
+validation.isMax = function (selector, max, message) {
     return {
-        selector:selector,
-        test:function(value){
-            return value <= max ? undefined: message || `giá trị phải nhỏ hơn hoặc bằng ${max}`
+        selector: selector,
+        test: function (value) {
+            return value <= max ? undefined : message || `giá trị phải nhỏ hơn hoặc bằng ${max}`
         }
     }
 }
 
-validation.isPassword_confirm = function(selector, getPassword , message){
+validation.isPassword_confirm = function (selector, getPassword, message) {
     return {
-        selector:selector,
-        test:function(value){
-            return value.trim() === getPassword() ? undefined: message || `vui lòng nhập lại trường này`
+        selector: selector,
+        test: function (value) {
+            return value.trim() === getPassword() ? undefined : message || `vui lòng nhập lại trường này`
         }
     }
 }
 
-validation.isImage = (selector,message) => {
-    return{
-        selector:selector,
-        test : (value)=>{
-            regex =  /.*\.(jpg)$/igm
+validation.isImage = (selector, message) => {
+    return {
+        selector: selector,
+        test: (value) => {
+            regex = /.*\.(jpg)$/igm
             return regex.test(value) ? undefined : message || "ảnh phải .jpg"
         }
     }

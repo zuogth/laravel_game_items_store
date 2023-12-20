@@ -1,10 +1,11 @@
 
-.l-page-desgin{
+.l-page-desgin {
     width: 50%;
 
-   margin: 5rem auto;
-   background-color: #fff;
+    margin: 5rem auto;
+    background-color: #fff;
 }
+
 /* tiêu đề */
 .l-detail-page {
 
@@ -13,14 +14,17 @@
     justify-content: center;
 
 }
-.l-detail-page>div{
+
+.l-detail-page > div {
     padding: 1.5rem 0 0 1rem;
 }
-.l-detail-page>.l-themes-login-page{
+
+.l-detail-page > .l-themes-login-page {
     position: relative;
     padding: 1.5rem;
 }
-.l-detail-page>.l-themes-login-page::after {
+
+.l-detail-page > .l-themes-login-page::after {
     position: absolute;
     width: 0.3rem;
     height: 0.3rem;
@@ -29,82 +33,90 @@
     top: -5px;
     left: 5px;
     right: 0;
-    margin:3rem 0 0 0.5rem;
+    margin: 3rem 0 0 0.5rem;
 }
-.l-detail-page>.l-themes-register-page>h3>a{
+
+.l-detail-page > .l-themes-register-page > h3 > a {
     text-decoration: none;
     color: rgba(54, 53, 53, 0.815);
 
 
 }
-.l-detail-page>.l-themes-register-page>h3:hover>a{
+
+.l-detail-page > .l-themes-register-page > h3:hover > a {
     color: black;
 }
+
 /* lable */
-.l-themes-page > label{
+.l-themes-page > label {
     font-size: 1.1rem;
 }
+
 /* input */
-.form-login-input-page{
+.form-login-input-page {
     padding: .5rem 3rem;
 }
-.form-login-input-page > input{
+
+.form-login-input-page > input {
     width: 100%;
     height: 3.1rem;
     padding: 0.8rem;
     border: 1px solid rgba(218, 217, 217, 0.815);
 
 }
-.l-list-button-page{
+
+.l-list-button-page {
     display: flex;
     justify-content: space-between;
-    margin:1.2rem 3rem;
+    margin: 1.2rem 3rem;
 
 }
-.l-footer-page>.forgot-password-page>a{
+
+.l-footer-page > .forgot-password-page > a {
     text-decoration: none;
     color: rgba(54, 53, 53, 0.815);
     line-height: 3.5rem;
     font-size: 1.1rem;
 }
 
-.l-footer-page>.forgot-password-page:hover>a{
+.l-footer-page > .forgot-password-page:hover > a {
     color: black;
 }
 
 /* register */
 
-.l-list-button-page>.l-button-register-page{
+.l-list-button-page > .l-button-register-page {
     width: 100%;
     margin: 1rem 0;
 }
-.l-list-button-page>.l-button-register-page>.register{
+
+.l-list-button-page > .l-button-register-page > .register {
     height: 3.6rem;
     width: 100%;
     padding: 0.8rem;
 
-    background-color: black ;
+    background-color: black;
     border: 1px solid black;
     color: #fff;
 }
 
-.l-list-button-page>.l-button-register-page:hover >.register{
-    background-color: #fff ;
+.l-list-button-page > .l-button-register-page:hover > .register {
+    background-color: #fff;
     border: 1px solid black;
     color: black;
 }
 
 /* forgot */
-.forgot-design{
+.forgot-design {
     margin: 2rem 0;
     text-align: center;
 }
 
-.l-list-button-page>.l-button-login-page-forgot{
+.l-list-button-page > .l-button-login-page-forgot {
     width: 100%;
 }
 
-.l-list-button-page>.l-button-login-page-forgot>button{
+.l-list-button-page > .l-button-login-page-forgot > button {
     height: 3.6rem;
     width: 98%;
     padding: 0.8rem;
@@ -112,24 +124,26 @@
 
     color: #fff;
 }
-.l-list-button-page>.l-button-login-page-forgot>.submit{
-    background-color: black ;
+
+.l-list-button-page > .l-button-login-page-forgot > .submit {
+    background-color: black;
     border: 1px solid black;
 }
 
 
-.l-list-button-page>.l-button-login-page-forgot:hover>.submit{
-    background-color: #fff ;
+.l-list-button-page > .l-button-login-page-forgot:hover > .submit {
+    background-color: #fff;
     border: 1px solid black;
     color: black;
 }
 
 /* l-button-login-page-forgot-cancel */
-.l-button-login-page-forgot-cancel{
+.l-button-login-page-forgot-cancel {
 
     padding: 0.8rem;
 }
-.l-button-login-page-forgot-cancel>button{
+
+.l-button-login-page-forgot-cancel > button {
     height: 3.6rem;
     width: 94.7%;
 
@@ -138,21 +152,27 @@
     color: black;
     background-color: #fff;
 }
-.l-button-login-page-forgot-cancel>button:hover{
+
+.l-button-login-page-forgot-cancel > button:hover {
 
     color: #fff;
     background-color: black;
 }
-.btn-google{
+
+.btn-google {
     width: 100%;
     padding-left: .5rem;
 }
-.btn-google>a{font-size: 1.8rem;}
 
-.l-button-login{
+.btn-google > a {
+    font-size: 1.8rem;
+}
+
+.l-button-login {
     margin-bottom: 1rem;
 }
-.l-button-login>.login {
+
+.l-button-login > .login {
     background-color: black;
     color: #fff;
     height: 3.6rem;

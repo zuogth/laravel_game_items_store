@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\login;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\user\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Services\user\UserService;
 
 class LoginController extends Controller
 {
@@ -16,45 +14,46 @@ class LoginController extends Controller
 
     public function __construct(UserService $userService)
     {
-        $this->userService=$userService;
+        $this->userService = $userService;
     }
 
-    public function index(){
-        return view('login.login',[
-            'title'=>'Login'
+    public function index()
+    {
+        return view('login.login', [
+            'title' => 'Login'
         ]);
     }
 
     public function store(Request $request)
     {
-        $credentials=$request->validate([
-            'email'=>'required',
-            'password'=>'required'
+        $credentials = $request->validate([
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
-        if(Auth::attempt($credentials,$request->input('remember'))){
+        if (Auth::attempt($credentials, $request->input('remember'))) {
 
-            $user=Auth::user();
-            if($user->status!=0){
-                if($user->role=='QL'){
+            $user = Auth::user();
+            if ($user->status != 0) {
+                if ($user->role == 'QL') {
                     return redirect()->route('admin');
                 }
                 return redirect()->route('home');
-            }else{
+            } else {
                 Auth::logout();
-                Session::flash('error','Tài khoản đã bị khóa');
+                Session::flash('error', 'Tài khoản đã bị khóa');
                 return redirect()->back();
             }
         }
 
-        Session::flash('error','Tài khoản hoặc mật khẩu không chính xác');
+        Session::flash('error', 'Tài khoản hoặc mật khẩu không chính xác');
         return redirect()->back();
     }
 
     public function logout()
     {
         $user = Auth::user();
-        if($user){
+        if ($user) {
             if ($user->roles == 'QL') {
                 Auth::logout();
                 return redirect()->route('login');

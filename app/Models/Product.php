@@ -9,15 +9,16 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $table='PRODUCT';
-    public $timestamps=false;
+    protected $table = 'PRODUCT';
+    public $timestamps = false;
 
-    protected $fillable=[
+    protected $fillable = [
         'name',
         'code',
         'price',
         'status',
         'total_quantity',
+        'category_id',
     ];
 
     public function bills()

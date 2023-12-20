@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\user\HomePageController;
+use App\Http\Controllers\admin\bill\AdminBillController;
+use App\Http\Controllers\bill\BillController;
 use App\Http\Controllers\login\LoginController;
 use App\Http\Controllers\login\RegisterController;
 use App\Http\Controllers\product\ProductController;
-use App\Http\Controllers\bill\BillController;
+use App\Http\Controllers\user\HomePageController;
+use Illuminate\Support\Facades\Route;
 
 
 /*
@@ -20,23 +21,29 @@ use App\Http\Controllers\bill\BillController;
 */
 
 #route client
-Route::prefix('/')->group(function(){
+Route::prefix('/')->group(function () {
     #Home product
-    Route::get('',[HomePageController::class,'index'])->name("home");
+    Route::get('', [HomePageController::class, 'index'])->name("home");
 
     #Login
-    Route::get('/login',[LoginController::class,'index'])->name('login');
-    Route::post('/login',[LoginController::class,'store']);
-    Route::get('/logout',[LoginController::class,'logout']);
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'store']);
+    Route::get('/logout', [LoginController::class, 'logout']);
 
-    Route::get('/register',[RegisterController::class,'register']);
-    Route::post('/register',[RegisterController::class,'store']);
+    Route::get('/register', [RegisterController::class, 'register']);
+    Route::post('/register', [RegisterController::class, 'store']);
 
     #Products
-    Route::get('/products',[ProductController::class,'index']);
-    Route::get('/products/{code}',[ProductController::class,'show']);
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/products/{code}', [ProductController::class, 'show']);
 
     #Bill
-    Route::post('/products/{code}',[BillController::class,'store']);
+    Route::post('/products/{code}', [BillController::class, 'store']);
 
+    #admin
+
+});
+
+Route::prefix('/admin')->group(function () {
+    Route::get('/bill', [AdminBillController::class, 'index']);
 });
