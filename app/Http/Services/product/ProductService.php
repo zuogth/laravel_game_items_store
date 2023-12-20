@@ -6,14 +6,14 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Log;
-class ProductServiceClient
+class ProductService
 {
 
 
     public function findAll(){
         try {
             $bills=DB::table('BILL')
-                    ->where('BILL.status','=','1')
+                    ->where('BILL.status','<>','-1')
                     ->select('BILL.*');
 
             return DB::table('PRODUCT')
@@ -32,7 +32,7 @@ class ProductServiceClient
     public function findByCode($code){
         try {
             $bills=DB::table('BILL')
-                    ->where('BILL.status','=','1')
+                    ->where('BILL.status','<>','-1')
                     ->select('BILL.*');
 
             return DB::table('PRODUCT')

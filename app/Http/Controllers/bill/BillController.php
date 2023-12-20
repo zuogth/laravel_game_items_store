@@ -5,13 +5,13 @@ namespace App\Http\Controllers\bill;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Http\Services\bill\BillServiceClient;
+use App\Http\Services\bill\BillService;
 use Illuminate\Support\Facades\Session;
 
 class BillController extends Controller
 {
-    protected BillServiceClient $billService;
-    public function __construct(BillServiceClient $billService)
+    protected BillService $billService;
+    public function __construct(BillService $billService)
     {
         $this->billService=$billService;
     }
@@ -24,8 +24,8 @@ class BillController extends Controller
         //     Session::flash('error','Có lỗi xảy ra, xin thử lại sau!');
         //     return redirect()->back();;
         // }
-        $qr = $this->billService->CallApiQR('test','1000');
-
+        $qr = $this->billService->callApiQR('test','1000');
+        
         return view('bill.pay',[
             'title'=>'Thanh toán',
             'qr'=>$qr->getData()

@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\product;
 
 use App\Http\Controllers\Controller;
-use App\Http\Services\product\ProductServiceClient;
+use App\Http\Services\product\ProductService;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
 
 class ProductController extends Controller
 {
-    protected ProductServiceClient $productService;
-    public function __construct(ProductServiceClient $productService)
+    protected ProductService $productService;
+    public function __construct(ProductService $productService)
     {
         $this->productService=$productService;
     }

@@ -1,0 +1,33 @@
+.model-pay{
+    width: 70%;
+    box-shadow: 0px 0px 5px;
+    border-radius: 5px;
+}
+.info-pay{
+    display: flex;
+    align-items: baseline;
+    padding: 1rem .5rem;
+}
+.info-pay p{
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.info-pay-qr{
+    text-align: center;
+    background-color: #fff;
+}
+.info-pay-qr p{
+    margin: 0;
+}
+.copy-text{
+    display: flex;
+    align-items: center;
+}
+
+.alert-custom{
+    display: none;
+    color: #fff;
+    background-color: #28a745;
+    border-color: #23923d;
+}

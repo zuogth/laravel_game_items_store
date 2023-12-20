@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Services\user\UserClientService;
+use App\Http\Services\user\UserService;
 
 class LoginController extends Controller
 {
-    protected UserClientService $userService;
+    protected UserService $userService;
 
-    public function __construct(UserClientService $userService)
+    public function __construct(UserService $userService)
     {
         $this->userService=$userService;
     }

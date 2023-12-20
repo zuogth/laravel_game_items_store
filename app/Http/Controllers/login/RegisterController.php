@@ -4,14 +4,14 @@ namespace App\Http\Controllers\login;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Services\user\UserClientService;
+use App\Http\Services\user\UserService;
 
 class RegisterController extends Controller
 {
 
-    protected UserClientService $userService;
+    protected UserService $userService;
 
-    public function __construct(UserClientService $userService)
+    public function __construct(UserService $userService)
     {
         $this->userService=$userService;
     }
