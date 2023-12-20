@@ -32,14 +32,12 @@ class ProductController extends Controller
     {
 
         $product = $this->productService->findByCode($code);
-        
-        $randomString = Str::random(10);
-        $bill_code = $randomString . date("YmdHis");
+        $bill_code=Utils::generateBillCode();
 
         return view('product.show', [
             'title' => $product->name,
             'product' => $product,
-            'bill_code'=> $bill_code
+            'bill_code' => $bill_code
         ]);
     }
 

@@ -12,19 +12,20 @@ use Illuminate\Support\Str;
 
 class BillService
 {
-
-
-    public function store(Request $request)
+    public function store(Request $request): bool
     {
         try {
-            date_default_timezone_set('Asia/Ho_Chi_Minh');
-            $currentTime = Carbon::now();
-            $currentTimePlus5Minutes = $currentTime->addMinutes(5);
+            $expire = $this->getExpireDate();
 
-            $user = Bill::create([
+            DB::table('PRODUCT')
+                ->where('PRODUCT.id','=',(string)$request->input('product_id'))
+                ->decrement('PRODUCT.total_quantity',$request->input('quantity'));
+
+            Bill::create([
                 'product_id' => (string)$request->input('product_id'),
-                'expire_date' => $currentTime,
-                'bill_code' => $request->$bill_code,
+                'expire_date' => $expire,
+                'bill_code' => $request->input('bill_code'),
+                'price'=> $request->input('price'),
                 'quantity' => (string)$request->input('quantity'),
                 'total_price' => $request->input('quantity') * $request->input('price'),
                 'status' => '1'
@@ -36,7 +37,18 @@ class BillService
         return true;
     }
 
-    public function callApiQR($content, $amount)
+    public function findByBillCode($billCode){
+        try {
+            return DB::table('BILL')
+                ->where('BILL.bill_code','=',$billCode)
+                ->first();
+        }catch (\Exception $ex){
+            Log::error($ex->getMessage());
+            return new Bill();
+        }
+    }
+
+    public function callApiQR($content, $amount): \Illuminate\Http\JsonResponse
     {
         try {
             $url = env('API_QR_URL');
@@ -75,12 +87,23 @@ class BillService
         }
     }
 
-    public function checkBill(){
+    public function checkBill(): bool
+    {
         try {
+
+            $bills = DB::table('BILL')
+                ->where('BILL.status','=','1')
+                ->where('BILL.expire_date', '<=', now())
+                ->get();
+            foreach ($bills as $bill){
+                DB::table('PRODUCT')
+                    ->where('PRODUCT.id', '=', $bill->product_id)
+                    ->increment('PRODUCT.total_quantity', $bill->quantity);
+            }
             DB::table('BILL')
                 ->where('BILL.status', '=', '1')
-                ->where('BILL.expire', '>', now())
-                ->update(['BILL.status'=>'-2']);
+                ->where('BILL.expire_date', '<=', now())
+                ->update(['BILL.status' => '-2']);
         } catch (\Exception $ex) {
             Log::error($ex);
             return false;
@@ -89,4 +112,11 @@ class BillService
         return true;
     }
 
+    private function getExpireDate(): Carbon
+    {
+        $expire = env('PAY_EXPIRE_TIME');
+
+        $currentTime = Carbon::now();
+        return $currentTime->addMinutes($expire);
+    }
 }

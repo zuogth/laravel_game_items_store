@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Str;
+
 class Utils
 {
     public static function statusToString($status)
@@ -18,10 +20,9 @@ class Utils
             return 'thất bại';
     }
 
-    public static function generateBillCode(){
+    public static function generateBillCode()
+    {
         $randomString = Str::random(10);
-        $bill_code = $randomString . date("YmdHis");
-
-        return $bill_code;
+        return $randomString . date("YmdHis");
     }
 }

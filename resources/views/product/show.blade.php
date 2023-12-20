@@ -7,7 +7,7 @@
             <div class="card-header">
                 <h3 class="card-title">{{$title}}</h3>
             </div>
-            <form action="/payment/{{ $bill_code }}" method="POST" id="form-buy-product">
+            <form action="{{ '/payment/'.$bill_code }}" method="POST" id="form-buy-product">
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-sm-6">
@@ -53,6 +53,7 @@
                     </div>
                 </div>
                 <input type="text" name="product_id" class="form-control" value="{{$product->id}}" hidden>
+                <input type="text" name="bill_code" class="form-control" value="{{$bill_code}}" hidden>
                 @csrf
                 <!-- /.card-body -->
                 <div class="card-footer">

@@ -15,12 +15,12 @@ class ProductService
         try {
             $bills = DB::table('BILL')
                 ->where('BILL.status', '<>', '-1')
+                ->where('BILL.status', '<>', '-2')
                 ->select('BILL.*');
 
             return DB::table('PRODUCT')
                 ->leftJoinSub($bills, 'b', 'PRODUCT.id', '=', 'b.product_id')
-                ->select('PRODUCT.name', 'PRODUCT.price', 'PRODUCT.id', 'PRODUCT.code')
-                ->selectRaw('PRODUCT.total_quantity - if(sum(b.quantity) is null,0,sum(b.quantity)) as now_available')
+                ->select('PRODUCT.name', 'PRODUCT.price', 'PRODUCT.id', 'PRODUCT.code','PRODUCT.total_quantity as now_available')
                 ->selectRaw('if(sum(b.quantity) is null,0,sum(b.quantity)) as sold')
                 ->groupBy('PRODUCT.id', 'PRODUCT.name', 'PRODUCT.price', 'PRODUCT.total_quantity', 'PRODUCT.code')
                 ->get();
@@ -39,8 +39,7 @@ class ProductService
 
             return DB::table('PRODUCT')
                 ->leftJoinSub($bills, 'b', 'PRODUCT.id', '=', 'b.product_id')
-                ->select('PRODUCT.name', 'PRODUCT.price', 'PRODUCT.id', 'PRODUCT.code')
-                ->selectRaw('PRODUCT.total_quantity - if(sum(b.quantity) is null,0,sum(b.quantity)) as now_available')
+                ->select('PRODUCT.name', 'PRODUCT.price', 'PRODUCT.id', 'PRODUCT.code','PRODUCT.total_quantity as now_available')
                 ->selectRaw('if(sum(b.quantity) is null,0,sum(b.quantity)) as sold')
                 ->where('PRODUCT.code', $code)
                 ->groupBy('PRODUCT.id', 'PRODUCT.name', 'PRODUCT.price', 'PRODUCT.total_quantity', 'PRODUCT.code')
