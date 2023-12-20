@@ -7,7 +7,7 @@
             <div class="card-header">
                 <h3 class="card-title">{{$title}}</h3>
             </div>
-            <form action="" method="POST" id="form-buy-product">
+            <form action="/payment/{{ $bill_code }}" method="POST" id="form-buy-product">
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-sm-6">
@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="form-group col-sm-4">
                             <label for="now_available">Hiện có</label>
-                            <input type="text" name="now_available" class="form-control" id="now_available"
+                            <input type="number" name="now_available" class="form-control" id="now_available"
                                    placeholder="Enter name" value="{{$product->now_available}}" readonly>
                             @error('now_available')
                             <span style="color: #da0101">{{$message}}</span>

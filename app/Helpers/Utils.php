@@ -17,4 +17,11 @@ class Utils
         } else
             return 'thất bại';
     }
+
+    public static function generateBillCode(){
+        $randomString = Str::random(10);
+        $bill_code = $randomString . date("YmdHis");
+
+        return $bill_code;
+    }
 }

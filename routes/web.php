@@ -38,12 +38,12 @@ Route::prefix('/')->group(function () {
     Route::get('/products/{code}', [ProductController::class, 'show']);
 
     #Bill
-    Route::post('/products/{code}', [BillController::class, 'store']);
+    Route::post('/payment/{bill_code}', [BillController::class, 'store']);
 
     #admin
 
 });
 
 Route::prefix('/admin')->group(function () {
-    Route::get('/bill', [AdminBillController::class, 'index']);
+    Route::get('/bill', [AdminBillController::class, 'index'])->name("admin");
 });

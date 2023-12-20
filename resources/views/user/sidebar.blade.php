@@ -53,7 +53,6 @@
                         </p>
                     </a>
                 </li>
-                </li>
                 <li class="nav-item">
                     <a href="/user/product/list" class="nav-link">
                         <i class="nav-icon fas fa-store"></i>
@@ -77,6 +76,16 @@
                         </li>
                     </ul>
                 </li>
+                @if(\Illuminate\Support\Facades\Auth::user() && \Illuminate\Support\Facades\Auth::user()->role == 'QL')
+                    <li class="nav-item">
+                        <a href="/admin/bill" class="nav-link">
+                            <i class="nav-icon fas fa-home"></i>
+                            <p>
+                                Quản lý đơn hàng
+                            </p>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-category -->

@@ -154,7 +154,7 @@ validation.isMin = function (selector, min, message) {
     return {
         selector: selector,
         test: function (value) {
-            return value > min ? undefined : message || `giá trị phải lớn hơn ${min}`
+            return Number(value) > Number(min) ? undefined : message || `giá trị phải lớn hơn ${min}`
         }
     }
 }
@@ -163,7 +163,7 @@ validation.isMax = function (selector, max, message) {
     return {
         selector: selector,
         test: function (value) {
-            return value <= max ? undefined : message || `giá trị phải nhỏ hơn hoặc bằng ${max}`
+            return Number(value) <= Number(max) ? undefined : message || `giá trị phải nhỏ hơn hoặc bằng ${max}`
         }
     }
 }

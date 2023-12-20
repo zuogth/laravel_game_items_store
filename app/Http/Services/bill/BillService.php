@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class BillService
@@ -17,17 +18,13 @@ class BillService
     {
         try {
             date_default_timezone_set('Asia/Ho_Chi_Minh');
-
-            $randomString = Str::random(10);
-            $bill_code = $randomString . date("YmdHis");
-
             $currentTime = Carbon::now();
             $currentTimePlus5Minutes = $currentTime->addMinutes(5);
 
             $user = Bill::create([
                 'product_id' => (string)$request->input('product_id'),
                 'expire_date' => $currentTime,
-                'bill_code' => $bill_code,
+                'bill_code' => $request->$bill_code,
                 'quantity' => (string)$request->input('quantity'),
                 'total_price' => $request->input('quantity') * $request->input('price'),
                 'status' => '1'
@@ -76,6 +73,20 @@ class BillService
             Log::error($ex);
             return response()->json(['error' => $ex, 'code' => 'ERROR']);
         }
+    }
+
+    public function checkBill(){
+        try {
+            DB::table('BILL')
+                ->where('BILL.status', '=', '1')
+                ->where('BILL.expire', '>', now())
+                ->update(['BILL.status'=>'-2']);
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            return false;
+        }
+        Log::info('UPDATED CHECK PAY BILL');
+        return true;
     }
 
 }

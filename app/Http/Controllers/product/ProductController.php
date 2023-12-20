@@ -4,6 +4,8 @@ namespace App\Http\Controllers\product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\product\ProductService;
+use App\Helpers\Utils;
+use Illuminate\Support\Str;
 
 
 class ProductController extends Controller
@@ -30,10 +32,14 @@ class ProductController extends Controller
     {
 
         $product = $this->productService->findByCode($code);
+        
+        $randomString = Str::random(10);
+        $bill_code = $randomString . date("YmdHis");
 
         return view('product.show', [
             'title' => $product->name,
-            'product' => $product
+            'product' => $product,
+            'bill_code'=> $bill_code
         ]);
     }
 
