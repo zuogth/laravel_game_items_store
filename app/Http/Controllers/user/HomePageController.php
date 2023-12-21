@@ -20,15 +20,14 @@ class HomePageController extends Controller
 
     public function index()
     {
-<<<<<<< HEAD
-=======
+
         $result = [];
         $categorylist = $this->categoryService->findAllByStatus(1);
 
         foreach ($categorylist as $cate) {
             $result[$cate->name] = $this->productService->findByCate($cate->id);
         }
->>>>>>> bc37bb91855846a08b1ced75c3d628406be9b746
+
         return view('user.home', [
             'title' => 'Trang chủ',
             'mapProducts' => $result
