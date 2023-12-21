@@ -34,13 +34,14 @@ Route::prefix('/')->group(function () {
     Route::post('/register', [RegisterController::class, 'store']);
 
     #Products
-    Route::get('/products', [ProductController::class, 'index']);
+//    Route::get('/products', [ProductController::class, 'index']);
     Route::get('/products/{code}', [ProductController::class, 'show']);
 
     #Bill
     Route::post('/products/{code}', [BillController::class, 'store']);
 
-    #admin
+    #CATEGORY
+    Route::get('/category/{code}', [HomePageController::class, 'category']);
 
 });
 

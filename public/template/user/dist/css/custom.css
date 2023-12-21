@@ -92,3 +92,22 @@ label#select_imgs {
     cursor: pointer;
 }
 
+.table td, .table th {
+    vertical-align: middle;
+    border: 1px #6d93bd5e solid;
+}
+
+.table tr th {
+    border: 2px white solid;
+}
+
+.span-btn {
+    color: #324253;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 0;
+    color: #212529;
+    background-color: transparent
+}
