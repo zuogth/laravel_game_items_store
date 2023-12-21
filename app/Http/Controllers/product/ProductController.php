@@ -20,19 +20,13 @@ class ProductController extends Controller
     public function index()
     {
 
-        $products = $this->productService->findAll();
-
-        return view('product.products', [
-            'title' => 'Trang chủ',
-            'products' => $products
-        ]);
     }
 
     public function show($code)
     {
 
         $product = $this->productService->findByCode($code);
-        $bill_code=Utils::generateBillCode();
+        $bill_code = Utils::generateBillCode();
 
         return view('product.show', [
             'title' => $product->name,
@@ -40,6 +34,4 @@ class ProductController extends Controller
             'bill_code' => $bill_code
         ]);
     }
-
-
 }

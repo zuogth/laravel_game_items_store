@@ -44,7 +44,7 @@
     <script src="/template/user/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="/template/user/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="/template/user/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script src="/template/admin/js/bill.js"></script>
+    <script src="/template/admin/js/common.js"></script>
 
     <script>
         $(function () {

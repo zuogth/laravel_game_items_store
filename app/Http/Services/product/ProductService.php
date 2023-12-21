@@ -45,4 +45,32 @@ class ProductService
 
     }
 
+    public function findByCate($cateId)
+    {
+        try {
+            $products = DB::table('PRODUCT')
+                ->where('PRODUCT.category_id', $cateId)
+                ->select('PRODUCT.*')->get();
+            return $products;
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            return [];
+        }
+    }
+
+    public function findByCateCode($cateCode)
+    {
+        try {
+            $category = DB::table('CATEGORY')
+                ->where('CATEGORY.code', $cateCode)
+                ->select('CATEGORY.*');
+            return DB::table('PRODUCT')
+                ->joinSub($category, 'b', 'PRODUCT.category_id', '=', 'b.id')
+                ->select('PRODUCT.name', 'PRODUCT.price', 'PRODUCT.id', 'PRODUCT.code', 'PRODUCT.total_quantity', 'PRODUCT.sold', 'b.name as category_name')
+                ->get();
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            return [];
+        }
+    }
 }
