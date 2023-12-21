@@ -72,7 +72,7 @@ class ProductService
                 ->select('CATEGORY.*');
             return DB::table('PRODUCT')
                 ->joinSub($category, 'b', 'PRODUCT.category_id', '=', 'b.id')
-                ->select('PRODUCT.name', 'PRODUCT.price', 'PRODUCT.id', 'PRODUCT.code', 'PRODUCT.total_quantity','PRODUCT.sold')
+                ->select('PRODUCT.name', 'PRODUCT.price', 'PRODUCT.id', 'PRODUCT.code', 'PRODUCT.total_quantity', 'PRODUCT.sold', 'b.name as category_name')
                 ->get();
         } catch (\Exception $ex) {
             Log::error($ex);

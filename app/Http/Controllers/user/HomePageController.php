@@ -29,16 +29,20 @@ class HomePageController extends Controller
         return view('user.home', [
             'title' => 'Trang chủ',
             'mapProducts' => $result
-
         ]);
     }
 
     public function category($code)
     {
         $result = $this->productService->findByCateCode($code);
-        return view('product.products', [
-            'title' => "product",
-            'products' => $result
-        ]);
+        if (!is_null($result->first())) {
+            return view('product.products', [
+                'title' => $result->first()->category_name,
+                'products' => $result
+            ]);
+        } else {
+            return redirect()->to('/');
+        }
+
     }
 }

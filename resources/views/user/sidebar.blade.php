@@ -10,28 +10,13 @@
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            {{--            <div class="image">--}}
-            {{--                <img src="/template/user/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">--}}
-            {{--            </div>--}}
-            {{--            @if (\Illuminate\Support\Facades\Auth::user())--}}
-            {{--                <div class="info">--}}
-            {{--                    <a href="#" class="d-block">{{\Illuminate\Support\Facades\Auth::user()->full_name}}</a>--}}
-            {{--                </div>--}}
-            {{--                <div class="info">--}}
-            {{--                    <a href="/logout" class="d-block" style="text-decoration: underline"><i--}}
-            {{--                            class="fas fa-sign-out-alt"></i></a>--}}
-            {{--                </div>--}}
-            {{--            @else--}}
-            {{--                <div class="info">--}}
-            {{--                    <a href="/login" class="d-block">Đăng nhập</a>--}}
-            {{--                </div>--}}
-            {{--            @endif--}}
         </div>
 
         <!-- SidebarSearch Form -->
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Tìm kiếm"
+                       aria-label="Search">
                 <div class="input-group-append">
                     <button class="btn btn-sidebar">
                         <i class="fas fa-search fa-fw"></i>

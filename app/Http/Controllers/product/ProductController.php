@@ -20,12 +20,6 @@ class ProductController extends Controller
     public function index()
     {
 
-//        $products = $this->productService->findAll();
-//
-//        return view('product.products', [
-//            'title' => 'Trang chủ',
-//            'products' => $products
-//        ]);
     }
 
     public function show($code)
