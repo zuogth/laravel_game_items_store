@@ -2,12 +2,15 @@
 
 namespace App\Http\Services\bill;
 
+use App\Mail\MyMail;
 use App\Models\Bill;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class BillService
@@ -16,7 +19,7 @@ class BillService
     {
         try {
             $expire = $this->getExpireDate();
-            $newAvail =  $request->input('now_available') - $request->input('quantity');
+            $newAvail =  $request->input('total_quantity') - $request->input('quantity');
             $newSold = $request->input('quantity') + $request->input('sold');
 
             DB::table('PRODUCT')
@@ -45,12 +48,35 @@ class BillService
     public function findByBillCode($billCode){
         try {
             return DB::table('BILL')
+                ->join('PRODUCT','BILL.product_id','=','PRODUCT.id')
                 ->where('BILL.bill_code','=',$billCode)
+                ->where('BILL.status','=','1')
+                ->select('BILL.*','PRODUCT.code as product_code')
                 ->first();
         }catch (\Exception $ex){
             Log::error($ex->getMessage());
             return new Bill();
         }
+    }
+
+    public function confirmPay($bill_code)
+    {
+        try {
+            DB::table('BILL')
+                ->where('BILL.bill_code','=',$bill_code)
+                ->update(['BILL.status'=>'2']);
+
+            $mailTo = env('MAIL_TO_ADDRESS');
+            Mail::to($mailTo)->send(new MyMail($bill_code));
+
+            Session::flash('success','Đã xác nhận thanh toán, xin đợi hệ thống xử lý');
+
+        }catch (\Exception $ex){
+            Log::error($ex->getMessage());
+            Session::flash('error','Có lỗi xảy ra, xin thử lại sau!');
+            return false;
+        }
+        return true;
     }
 
     public function callApiQR($content, $amount): \Illuminate\Http\JsonResponse

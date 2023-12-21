@@ -17,7 +17,7 @@ class ProductService
                     'PRODUCT.price',
                     'PRODUCT.id',
                     'PRODUCT.code',
-                    'PRODUCT.total_quantity as now_available')
+                    'PRODUCT.total_quantity')
                 ->selectRaw('if(PRODUCT.sold is null,0,PRODUCT.sold) as sold')
                 ->get();
         } catch (\Exception $ex) {
@@ -34,7 +34,7 @@ class ProductService
                     'PRODUCT.price',
                     'PRODUCT.id',
                     'PRODUCT.code',
-                    'PRODUCT.total_quantity as now_available')
+                    'PRODUCT.total_quantity')
                 ->selectRaw('if(PRODUCT.sold is null,0,PRODUCT.sold) as sold')
                 ->where('PRODUCT.code', $code)
                 ->first();
