@@ -45,7 +45,6 @@ Route::prefix('/')->group(function () {
 
     #CATEGORY
     Route::get('/category/{code}', [HomePageController::class, 'category']);
->>>>>>> bc37bb91855846a08b1ced75c3d628406be9b746
 
 });
 
