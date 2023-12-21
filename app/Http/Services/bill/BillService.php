@@ -113,8 +113,8 @@ class BillService
             }
         } catch (\Exception $ex) {
 
-            Log::error($ex);
-            return response()->json(['error' => $ex, 'code' => 'ERROR']);
+            Log::error($ex->getMessage());
+            return response()->json(['error' => $ex->getMessage(), 'code' => 'ERROR']);
         }
     }
 
