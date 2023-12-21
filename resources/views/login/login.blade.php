@@ -51,8 +51,8 @@
         error: ".errorMessage",
         formGroupSelector: '.form-login-input-page',
         rules: [
-            validation.isRequired("#email", "Bạn hãy nhập email"),
-            validation.isEmail("#email", "Trường này phải là email"),
+            validation.isRequired("#noti.blade.php", "Bạn hãy nhập noti.blade.php"),
+            validation.isEmail("#noti.blade.php", "Trường này phải là noti.blade.php"),
             validation.isRequired("#password", "Bạn hãy nhập mật khẩu"),
             validation.isMinLength("#password", min = 6, `Số kí tự phải lớn hơn hoặc bằng ${min}`)
         ],

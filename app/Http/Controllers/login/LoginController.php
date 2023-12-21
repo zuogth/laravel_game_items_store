@@ -35,9 +35,6 @@ class LoginController extends Controller
 
             $user = Auth::user();
             if ($user->status != 0) {
-                if ($user->role == 'QL') {
-                    return redirect()->route('admin');
-                }
                 return redirect()->route('home');
             } else {
                 Auth::logout();

@@ -7,7 +7,7 @@ return [
     | Default Mailer
     |--------------------------------------------------------------------------
     |
-    | This option controls the default mailer that is used to send any email
+    | This option controls the default mailer that is used to send any noti.blade.php
     | messages sent by your application. Alternative mailers may be setup
     | and used as needed; however, this mailer will be used by default.
     |
@@ -34,6 +34,17 @@ return [
     */
 
     'mailers' => [
+        'imap' => [
+            'transport' => 'imap',
+            'url' => env('MAIL_URL'),
+            'host' => env('MAIL_HOST', 'mail.laianhminh.com'),
+            'port' => env('MAIL_PORT', 993),
+            'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
+            'timeout' => null,
+            'local_domain' => env('MAIL_EHLO_DOMAIN'),
+        ],
         'smtp' => [
             'transport' => 'smtp',
             'url' => env('MAIL_URL'),
@@ -109,7 +120,7 @@ return [
     | Markdown Mail Settings
     |--------------------------------------------------------------------------
     |
-    | If you are using Markdown based email rendering, you may configure your
+    | If you are using Markdown based noti.blade.php rendering, you may configure your
     | theme and component paths here, allowing you to customize the design
     | of the emails. Or, you may simply stick with the Laravel defaults!
     |

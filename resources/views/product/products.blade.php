@@ -20,11 +20,16 @@
                 @foreach($products as $product)
                     <tr>
                         <td>{{$product->name}}</td>
-                        <td>{{$product->price}}</td>
+                        <td>{{App\Helpers\Helper::price($product->price)}}</td>
                         <td>{{$product->now_available}}</td>
                         <td>{{$product->sold}}</td>
                         <td>
-                            <a href="/products/{{$product->code}}" class="btn btn-primary btn-sm">Mua</a>
+                            @if($product->now_available <= 0)
+                                <a class="btn btn-warning btn-sm">Hết hàng</a>
+                            @else
+                                <a href="/products/{{$product->code}}" class="btn btn-primary btn-sm">Mua</a>
+                            @endif
+
                         </td>
                     </tr>
                 @endforeach

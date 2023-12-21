@@ -8,21 +8,17 @@ use Illuminate\Support\Facades\Log;
 
 class ProductService
 {
-
-
     public function findAll()
     {
         try {
-            $bills = DB::table('BILL')
-                ->where('BILL.status', '<>', '-1')
-                ->where('BILL.status', '<>', '-2')
-                ->select('BILL.*');
 
             return DB::table('PRODUCT')
-                ->leftJoinSub($bills, 'b', 'PRODUCT.id', '=', 'b.product_id')
-                ->select('PRODUCT.name', 'PRODUCT.price', 'PRODUCT.id', 'PRODUCT.code','PRODUCT.total_quantity as now_available')
-                ->selectRaw('if(sum(b.quantity) is null,0,sum(b.quantity)) as sold')
-                ->groupBy('PRODUCT.id', 'PRODUCT.name', 'PRODUCT.price', 'PRODUCT.total_quantity', 'PRODUCT.code')
+                ->select('PRODUCT.name',
+                    'PRODUCT.price',
+                    'PRODUCT.id',
+                    'PRODUCT.code',
+                    'PRODUCT.total_quantity as now_available')
+                ->selectRaw('if(PRODUCT.sold is null,0,PRODUCT.sold) as sold')
                 ->get();
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -33,16 +29,14 @@ class ProductService
     public function findByCode($code)
     {
         try {
-            $bills = DB::table('BILL')
-                ->where('BILL.status', '<>', '-1')
-                ->select('BILL.*');
-
             return DB::table('PRODUCT')
-                ->leftJoinSub($bills, 'b', 'PRODUCT.id', '=', 'b.product_id')
-                ->select('PRODUCT.name', 'PRODUCT.price', 'PRODUCT.id', 'PRODUCT.code','PRODUCT.total_quantity as now_available')
-                ->selectRaw('if(sum(b.quantity) is null,0,sum(b.quantity)) as sold')
+                ->select('PRODUCT.name',
+                    'PRODUCT.price',
+                    'PRODUCT.id',
+                    'PRODUCT.code',
+                    'PRODUCT.total_quantity as now_available')
+                ->selectRaw('if(PRODUCT.sold is null,0,PRODUCT.sold) as sold')
                 ->where('PRODUCT.code', $code)
-                ->groupBy('PRODUCT.id', 'PRODUCT.name', 'PRODUCT.price', 'PRODUCT.total_quantity', 'PRODUCT.code')
                 ->first();
         } catch (\Exception $ex) {
             Log::error($ex);

@@ -36,3 +36,39 @@
     background-color: #28a745;
     border-color: #23923d;
 }
+.l-list-button-page {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    margin-right: 1rem;
+
+}
+
+.l-button-confirm-pay {
+    margin-bottom: 1rem;
+}
+
+.l-button-confirm-pay> .confirm-pay {
+    background-color: #26a558;
+    color: #fff;
+    height: 2.6rem;
+    width: 10rem;
+    border-radius: 13px;
+    border: none;
+    font-size: .9rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.l-button-confirm-pay> .confirm-pay[disabled] {
+    background-color: #343434;
+}
+.l-button-confirm-pay > .confirm-pay:hover{
+    color: #fff;
+    background-color: #00742f;
+}
+
+.l-button-confirm-pay > .confirm-pay[disabled]:hover{
+    color: #fff;
+    background-color: #343434;
+}

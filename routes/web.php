@@ -38,8 +38,9 @@ Route::prefix('/')->group(function () {
     Route::get('/products/{code}', [ProductController::class, 'show']);
 
     #Bill
-    Route::post('/products/{code}', [BillController::class, 'store']);
-
+    Route::post('/payment/{bill_code}', [BillController::class, 'store']);
+    Route::get('/payment/{bill_code}', [BillController::class, 'index'])->name('show_bill');
+    Route::get('/payment/confirm/{bill_code}', [BillController::class, 'confirmPay']);
     #admin
 
 });

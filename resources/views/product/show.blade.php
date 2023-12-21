@@ -20,8 +20,8 @@
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="priceentry">Giá</label>
-                            <input type="number" name="price" class="form-control" id="priceentry"
-                                   value="{{$product->price}}" readonly>
+                            <input type="text" class="form-control" id="priceentry"
+                                   value="{{\App\Helpers\Helper::price($product->price)}}" readonly>
                             @error('price')
                             <span style="color: #da0101">{{$message}}</span>
                             @enderror
@@ -54,6 +54,8 @@
                 </div>
                 <input type="text" name="product_id" class="form-control" value="{{$product->id}}" hidden>
                 <input type="text" name="bill_code" class="form-control" value="{{$bill_code}}" hidden>
+                <input type="text" name="price" class="form-control" value="{{$product->price}}" hidden>
+                <input type="number" name="sold" class="form-control" value="{{$product->sold}}" hidden>
                 @csrf
                 <!-- /.card-body -->
                 <div class="card-footer">

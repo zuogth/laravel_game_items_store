@@ -19,6 +19,7 @@ class Product extends Model
         'status',
         'total_quantity',
         'category_id',
+        'sold'
     ];
 
     public function bills()
