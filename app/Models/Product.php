@@ -26,4 +26,9 @@ class Product extends Model
         return $this->hasMany(Bill::class);
     }
 
+    public function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+
 }

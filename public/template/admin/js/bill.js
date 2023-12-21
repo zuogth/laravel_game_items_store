@@ -1,71 +1,23 @@
-var table = $(function () {
-    $('#common-datatable').DataTable({
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-        "paging": true,
-        "lengthChange": false,
-        "searching": true,
-        "ordering": true,
-        aaSorting: [[1, 'desc']],
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-        language: {
-            url: "/template/language-datatable.json"
-        }
-    }).buttons().container().appendTo('#common-datatable_wrapper .col-md-6:eq(0)');
-});
+function statusBill(status) {
+    if (status == 1) {
+        return '<button name="status" class="btn btn-block btn-warning btn-sm">Đang thanh toán</button>';
+    } else if (status == 2) {
+        return '<button name="status" class="btn btn-block btn-info btn-sm">Xác minh</button>';
+    } else if (status == 3) {
+        return '<button name="status" class="btn btn-block btn-success btn-sm">Thành công</button>';
+    } else if (status == -2) {
+        return '<button name="status" class="btn btn-block btn-secondary btn-sm">Giao dịch hết hạn</button>';
+    } else
+        return '<button name="status" class="btn btn-block btn-danger btn-sm">Thất bại</button>';
+}
 
 
-$.ajax({
-    type: "get",
-    url: "/api/bill",
-    contentType: "application/json",
-    dataType: 'Json',
-    success: function (result) {
-        console.log(result)
-    },
-    error: function (result) {
-        console.log(result)
+function canHandleBill(status, id) {
+    if (status == 1) {
+        return '<button name="status" class="btn btn-block btn-warning btn-sm">Đang thanh toán</button>';
+    } else if (status == 2) {
+        return `<div><button name='status' class='btn btn-block btn-success btn-sm btn-bill-status' data-id='${id}' data-status='3'>Thành công</button>
+        <button name='status' class='btn btn-block btn-danger btn-sm btn-bill-status' data-id='${id}' data-status='-1'>Thất bại</button></div>`;
     }
-})
-
-$(document).on('click', '.btn-bill-status', function () {
-    let billId = $(this).attr('data-id')
-    let status = $(this).attr('data-status')
-    let data = JSON.stringify({
-        "status": status
-    });
-    $.ajax({
-        type: "put",
-        url: "/api/bill/" + billId,
-        contentType: "application/json",
-        dataType: 'Json',
-        data: data,
-        success: function (result) {
-            Swal.fire(
-                result.MESSAGES,
-                '',
-                'success'
-            ).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "/admin/bill";
-                }
-            })
-        },
-        error: function (error) {
-            error = error.responseJSON;
-            Swal.fire(
-                error.MESSAGES,
-                '',
-                'error'
-            ).then((result) => {
-            })
-        }
-
-    })
-})
-
-setInterval(function () {
-    console.log("Test")
-    table.ajax.reload();
-}, 60000);
+    return "";
+}

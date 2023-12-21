@@ -24,18 +24,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($bills as $bill)
-                        <tr>
-                            <td>{{$bill->bill_code}}</td>
-                            <td>{{$bill->bill_date}}</td>
-                            <td>{{$bill->expire_date}}</td>
-                            <td>{{$bill->quantity}}</td>
-                            <td>{!! \App\Helpers\Helper::price($bill->price) !!}</td>
-                            <td>{!! \App\Helpers\Helper::price($bill->total_price) !!}</td>
-                            <td>{!! \App\Helpers\Helper::statusBill($bill->status) !!}</td>
-                            <td>{!! \App\Helpers\Helper::canHandleBill($bill->status,$bill->id) !!}</td>
-                        </tr>
-                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -57,4 +45,99 @@
     <script src="/template/user/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="/template/user/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="/template/admin/js/bill.js"></script>
+
+    <script>
+        $(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('#common-datatable').DataTable({
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                processing: true,
+                serverSide: true,
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                // aaSorting: [[1, 'desc']],
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+                ajax: "{{url('/admin/bill-ajax')}}",
+                columns: [
+                    {"data": "bill_code"},
+                    {"data": "bill_date"},
+                    {"data": "expire_date"},
+                    {"data": "quantity"},
+                    {
+                        "data": "price", "render": function (data) {
+                            return toMoney(+data)
+                        }
+                    },
+                    {
+                        "data": "total_price", "render": function (data) {
+                            return toMoney(+data)
+                        }
+                    },
+                    {
+                        "data": "status", render: function (data) {
+                            return statusBill(data);
+                        }
+                    },
+                    {
+                        data: function (data) {
+                            return canHandleBill(data.status, data.id)
+                        }
+                    }
+                ],
+                language: {
+                    url: "/template/language-datatable.json"
+                },
+            }).buttons().container().appendTo('#common-datatable_wrapper .col-md-6:eq(0)');
+
+            setInterval(function () {
+                let oTable = $('#common-datatable').dataTable()
+                oTable.fnDraw(false);
+            }, 300000);
+
+        });
+        $(document).on('click', '.btn-bill-status', function () {
+            let billId = $(this).attr('data-id')
+            let status = $(this).attr('data-status')
+            let data = JSON.stringify({
+                "status": status
+            });
+            $.ajax({
+                type: "put",
+                url: "/api/admin/bill/" + billId,
+                contentType: "application/json",
+                dataType: 'Json',
+                data: data,
+                success: function (result) {
+                    Swal.fire(
+                        result.MESSAGES,
+                        '',
+                        'success'
+                    ).then((result) => {
+                        if (result.isConfirmed) {
+                            let oTable = $('#common-datatable').dataTable()
+                            oTable.fnDraw(false);
+                        }
+                    })
+                },
+                error: function (error) {
+                    error = error.responseJSON;
+                    Swal.fire(
+                        error.MESSAGES,
+                        '',
+                        'error'
+                    ).then((result) => {
+                    })
+                }
+
+            })
+        })
+    </script>
 @endsection
