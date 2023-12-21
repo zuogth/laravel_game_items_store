@@ -20,8 +20,8 @@
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="priceentry">Giá</label>
-                            <input type="number" name="price" class="form-control" id="priceentry"
-                                   value="{{$product->price}}" readonly>
+                            <input type="text" class="form-control" id="priceentry"
+                                   value="{{\App\Helpers\Helper::price($product->price)}}" readonly>
                             @error('price')
                             <span style="color: #da0101">{{$message}}</span>
                             @enderror
@@ -29,10 +29,10 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-4">
-                            <label for="now_available">Hiện có</label>
-                            <input type="number" name="now_available" class="form-control" id="now_available"
-                                   placeholder="Enter name" value="{{$product->now_available}}" readonly>
-                            @error('now_available')
+                            <label for="total_quantity">Hiện có</label>
+                            <input type="number" name="total_quantity" class="form-control" id="total_quantity"
+                                   placeholder="Enter name" value="{{$product->total_quantity}}" readonly>
+                            @error('total_quantity')
                             <span style="color: #da0101">{{$message}}</span>
                             @enderror
                         </div>
@@ -54,6 +54,8 @@
                 </div>
                 <input type="text" name="product_id" class="form-control" value="{{$product->id}}" hidden>
                 <input type="text" name="bill_code" class="form-control" value="{{$bill_code}}" hidden>
+                <input type="text" name="price" class="form-control" value="{{$product->price}}" hidden>
+                <input type="number" name="sold" class="form-control" value="{{$product->sold}}" hidden>
                 @csrf
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -65,7 +67,7 @@
 @endsection
 @section('footer')
     <script>
-        let now_available = document.querySelector('#form-buy-product #now_available').value;
+        let total_quantity = document.querySelector('#form-buy-product #total_quantity').value;
         validation({
             form: "#form-buy-product",
             error: ".errorMessage",
@@ -74,7 +76,7 @@
                 validation.isRequired("#quantity", "Bạn hãy nhập số lượng muốn mua"),
                 validation.isRequired("#id_game", "Bạn hãy nhập ID Game của bạn"),
                 validation.isMin("#quantity", min = 0, `Số lượng muốn mua phải lớn hơn ${min}`),
-                validation.isMax("#quantity", max = now_available, `Số lượng muốn mua phải nhỏ hơn hoặc bằng ${max}`),
+                validation.isMax("#quantity", max = total_quantity, `Số lượng muốn mua phải nhỏ hơn hoặc bằng ${max}`),
             ],
             onSubmit: function (data) {
                 console.log(data)

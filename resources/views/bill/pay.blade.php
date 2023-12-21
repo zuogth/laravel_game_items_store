@@ -108,7 +108,11 @@
                     @else
                         <img src="" alt="QR không sẵn sàng, hãy chuyển tiền theo thông tin bên" width=300 height=300>
                     @endif
-
+                    <div class="l-list-button-page">
+                        <div class="l-button-confirm-pay">
+                            <a href="{{'/payment/confirm/'.$bill_code}}" type="button" id="confirm-pay" class="confirm-pay">Xác nhận thanh toán</a>
+                        </div>
+                        <div>
                 </div>
             </div>
 

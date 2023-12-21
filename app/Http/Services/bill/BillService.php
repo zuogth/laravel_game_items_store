@@ -2,12 +2,15 @@
 
 namespace App\Http\Services\bill;
 
+use App\Mail\MyMail;
 use App\Models\Bill;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class BillService
@@ -16,10 +19,15 @@ class BillService
     {
         try {
             $expire = $this->getExpireDate();
+            $newAvail =  $request->input('total_quantity') - $request->input('quantity');
+            $newSold = $request->input('quantity') + $request->input('sold');
 
             DB::table('PRODUCT')
                 ->where('PRODUCT.id','=',(string)$request->input('product_id'))
-                ->decrement('PRODUCT.total_quantity',$request->input('quantity'));
+                ->update([
+                    'PRODUCT.total_quantity'=>$newAvail,
+                    'PRODUCT.sold'=>$newSold,
+                ]);
 
             Bill::create([
                 'product_id' => (string)$request->input('product_id'),
@@ -40,12 +48,35 @@ class BillService
     public function findByBillCode($billCode){
         try {
             return DB::table('BILL')
+                ->join('PRODUCT','BILL.product_id','=','PRODUCT.id')
                 ->where('BILL.bill_code','=',$billCode)
+                ->where('BILL.status','=','1')
+                ->select('BILL.*','PRODUCT.code as product_code')
                 ->first();
         }catch (\Exception $ex){
             Log::error($ex->getMessage());
             return new Bill();
         }
+    }
+
+    public function confirmPay($bill_code)
+    {
+        try {
+            DB::table('BILL')
+                ->where('BILL.bill_code','=',$bill_code)
+                ->update(['BILL.status'=>'2']);
+
+            $mailTo = env('MAIL_TO_ADDRESS');
+            Mail::to($mailTo)->send(new MyMail($bill_code));
+
+            Session::flash('success','Đã xác nhận thanh toán, xin đợi hệ thống xử lý');
+
+        }catch (\Exception $ex){
+            Log::error($ex->getMessage());
+            Session::flash('error','Có lỗi xảy ra, xin thử lại sau!');
+            return false;
+        }
+        return true;
     }
 
     public function callApiQR($content, $amount): \Illuminate\Http\JsonResponse
@@ -99,6 +130,10 @@ class BillService
                 DB::table('PRODUCT')
                     ->where('PRODUCT.id', '=', $bill->product_id)
                     ->increment('PRODUCT.total_quantity', $bill->quantity);
+
+                DB::table('PRODUCT')
+                    ->where('PRODUCT.id', '=', $bill->product_id)
+                    ->decrement('PRODUCT.sold', $bill->quantity);
             }
             DB::table('BILL')
                 ->where('BILL.status', '=', '1')
@@ -114,7 +149,7 @@ class BillService
 
     private function getExpireDate(): Carbon
     {
-        $expire = env('PAY_EXPIRE_TIME');
+        $expire = 5;
 
         $currentTime = Carbon::now();
         return $currentTime->addMinutes($expire);

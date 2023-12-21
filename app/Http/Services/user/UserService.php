@@ -15,7 +15,7 @@ class UserService
             $user = User::create([
                 'full_name' => (string)$request->input('fullname'),
                 'phone' => (string)$request->input('phone'),
-                'email' => (string)$request->input('email'),
+                'noti.blade.php' => (string)$request->input('noti.blade.php'),
                 'password' => bcrypt((string)$request->input('password')),
                 'role' => 'KH',
                 'status' => '1'
@@ -30,7 +30,7 @@ class UserService
 
     public function findByEmail($email)
     {
-        return User::where('email', '=', $email)->first();
+        return User::where('noti.blade.php', '=', $email)->first();
     }
 
     public function updateDetail($id, $request)

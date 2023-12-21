@@ -22,7 +22,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'phone',
-        'email',
+        'noti.blade.php',
         'full_name',
         'status',
         'password',

@@ -44,18 +44,10 @@
                                         </button>
                                     </td>
                                     <td class="text-center">
-                                        @if($product->total_quantity > 0)
-                                            <a href="/products/{{$product->code}}" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-cart-arrow-down"></i>
-                                                MUA NGAY
-                                            </a>
-                                        @endif
-                                        @if($product->total_quantity == 0)
-                                            <button class="btn btn-primary btn-sm" disabled>
-                                                <i class="fal fa-sad-tear"></i>
-                                                HẾT HÀNG
-                                            </button>
-                                        @endif
+                                        <a href="/products/{{$product->code}}" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-cart-arrow-down"></i>
+                                            MUA NGAY
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

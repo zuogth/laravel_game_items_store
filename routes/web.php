@@ -34,19 +34,22 @@ Route::prefix('/')->group(function () {
     Route::post('/register', [RegisterController::class, 'store']);
 
     #Products
-//    Route::get('/products', [ProductController::class, 'index']);
     Route::get('/products/{code}', [ProductController::class, 'show']);
 
     #Bill
-    Route::post('/products/{code}', [BillController::class, 'store']);
+    Route::post('/payment/{bill_code}', [BillController::class, 'store']);
+    Route::get('/payment/{bill_code}', [BillController::class, 'index'])->name('show_bill');
+    Route::get('/payment/confirm/{bill_code}', [BillController::class, 'confirmPay']);
+
 
     #CATEGORY
     Route::get('/category/{code}', [HomePageController::class, 'category']);
 
 });
-
-Route::prefix('/admin')->group(function () {
-    Route::get('/bill', [AdminBillController::class, 'index']);
-    Route::get('/bill-ajax', [AdminBillController::class, 'index']);
+Route::middleware(['auth','role'])->group(function () {
+    Route::prefix('/admin')->group(function () {
+        Route::get('/bill', [AdminBillController::class, 'index']);
+        Route::get('/bill-ajax', [AdminBillController::class, 'index']);
+    });
 });
 

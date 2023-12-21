@@ -20,7 +20,7 @@
                     <input type="text" id="email" placeholder="Nhập email *" name="email">
                     <div class="modal-errorMessage">
                         <span class="errorMessage"></span>
-                        @error('email')
+                        @error('noti.blade.php')
                         <span style="color: #da0101">{{$message}}</span>
                         @enderror
                     </div>
@@ -82,8 +82,8 @@
                 return document.querySelector('#m-form-register-main #password').value
             }, "Vui lòng xác nhập lại mật khẩu"),
             validation.isRequired("#fullname", "Bạn hãy nhập họ và tên"),
-            validation.isRequired("#email", "Bạn hãy nhập email"),
-            validation.isEmail("#email", "Trường này phải là email"),
+            validation.isRequired("#noti.blade.php", "Bạn hãy nhập noti.blade.php"),
+            validation.isEmail("#noti.blade.php", "Trường này phải là noti.blade.php"),
             validation.isRequired("#phone", "Bạn hãy nhập số điện thoại"),
 
         ],
