@@ -61,7 +61,7 @@
                 "lengthChange": false,
                 "searching": true,
                 "ordering": true,
-                // aaSorting: [[1, 'desc']],
+                aaSorting: [[1, 'desc']],
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
