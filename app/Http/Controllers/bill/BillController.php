@@ -23,13 +23,18 @@ class BillController extends Controller
     public function index($param){
         $bill = $this->billService->findByBillCode($param);
 
+        if(!$bill){
+            return redirect('/notfound');
+        }
+
         $expire = $bill->expire_date;
         $bill_code = $bill->bill_code;
 
         $content = $bill_code;
         $amount = (string)round($bill->total_price);
 
-        $qr = $this->billService->callApiQR('', $amount);
+        $qr = $this->billService->callApiQR($content, $amount);
+
         return view('bill.pay', [
             'title' => 'Thanh toán',
             'qr' => $qr->getData(),

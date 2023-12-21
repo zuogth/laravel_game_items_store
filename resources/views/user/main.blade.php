@@ -65,9 +65,9 @@
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
-            <b>userH3</b>
+            <b></b>
         </div>
-        <strong>Bản quyền © 2021 Công ty H3 bảo lưu mọi quyền</strong>
+        <strong>Bản quyền © 2023 Công ty H2 bảo lưu mọi quyền</strong>
     </footer>
 
     <!-- Control Sidebar -->
