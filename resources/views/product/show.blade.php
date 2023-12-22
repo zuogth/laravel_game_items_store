@@ -71,7 +71,7 @@
                 @csrf
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn pay-custom">Thanh toán</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Thanh toán</button>
                 </div>
             </form>
         </div>

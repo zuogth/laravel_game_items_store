@@ -14,6 +14,7 @@
     margin: 0;
     font-weight: 600;
     font-size: 1.1rem;
+    word-break: break-all
 }
 
 .info-pay-qr {
@@ -49,29 +50,12 @@
     margin-bottom: 1rem;
 }
 
-.l-button-confirm-pay > .confirm-pay {
-    background-color: #26a558;
-    color: #fff;
-    height: 2.6rem;
-    width: 10rem;
-    border-radius: 13px;
-    border: none;
-    font-size: .9rem;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
 
-.l-button-confirm-pay > .confirm-pay[disabled] {
+.l-button-confirm-pay > a[disabled].btn-primary {
     background-color: #343434;
 }
 
-.l-button-confirm-pay > .confirm-pay:hover {
-    color: #fff;
-    background-color: #00742f;
-}
-
-.l-button-confirm-pay > .confirm-pay[disabled]:hover {
+.l-button-confirm-pay > a[disabled].btn-primary:hover {
     color: #fff;
     background-color: #343434;
 }
@@ -80,4 +64,10 @@
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .model-pay{
+        width: 100%;
+    }
 }

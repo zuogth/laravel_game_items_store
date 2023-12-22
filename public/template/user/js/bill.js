@@ -22,7 +22,7 @@ function updateCountdown() {
         document.getElementById('countdown').innerHTML = minutes + 'm ' + seconds + 's';
     } else {
         // Display a message when the countdown reaches zero
-        document.getElementById('confirm-pay').setAttribute('disabled', true)
+        document.getElementById('confirm-pay').setAttribute('disabled', true);
         document.getElementById('confirm-pay').setAttribute('href', '#');
         document.getElementById('countdown').innerHTML = 'Hết hạn thanh toán';
         clearInterval(countdownInterval); // Stop the countdown

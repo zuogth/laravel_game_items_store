@@ -111,7 +111,7 @@
                     <div class="l-list-button-page">
                         <div class="l-button-confirm-pay">
                             <a href="{{'/payment/confirm/'.$bill_code}}" type="button" id="confirm-pay"
-                               class="confirm-pay">Xác nhận thanh toán</a>
+                               class="btn btn-sm btn-primary">Xác nhận thanh toán</a>
                         </div>
                         <div>
                         </div>
