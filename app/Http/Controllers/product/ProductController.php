@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\product;
 
+use App\Helpers\Utils;
 use App\Http\Controllers\Controller;
 use App\Http\Services\product\ProductService;
-use App\Helpers\Utils;
-use Illuminate\Support\Str;
 
 
 class ProductController extends Controller

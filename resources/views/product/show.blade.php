@@ -89,7 +89,7 @@
                 validation.isRequired("#id_game", "Bạn hãy nhập ID Game của bạn"),
                 validation.isMin("#quantity", min = 0, `Số lượng muốn mua phải lớn hơn ${min}`),
                 validation.isMax("#quantity", max = total_quantity, `Số lượng muốn mua phải nhỏ hơn hoặc bằng ${max}`),
-                validation.isRequired("#pay_type","Bạn hãy chọn phương thức thanh toán")
+                validation.isRequired("#pay_type", "Bạn hãy chọn phương thức thanh toán")
             ],
             onSubmit: function (data) {
                 console.log(data)

@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers\bill;
 
-use App\Helpers\Utils;
 use App\Http\Controllers\Controller;
 use App\Http\Services\bill\BillService;
-use App\Mail\MyMail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
-use function Symfony\Component\String\b;
 
 class BillController extends Controller
 {

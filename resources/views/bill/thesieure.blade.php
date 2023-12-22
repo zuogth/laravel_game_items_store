@@ -28,7 +28,7 @@
                                     </p>
                                     <div class="copy-text">
                                         <p id="accountNo">{{$accountNo}}</p><i class="nav-icon far fa-copy"
-                                                                           onclick="selectText('accountNo')"></i>
+                                                                               onclick="selectText('accountNo')"></i>
                                     </div>
 
                                 </div>
@@ -68,7 +68,7 @@
                                     </p>
                                     <div class="copy-text">
                                         <p id="content-transfer">{{$content}}</p><i class="nav-icon far fa-copy"
-                                                                            onclick="selectText('content-transfer')"></i>
+                                                                                    onclick="selectText('content-transfer')"></i>
                                     </div>
 
                                 </div>
@@ -94,17 +94,19 @@
                     <p><span style="color: red">NOTE:</span> Vui lòng thực hiện giao dịch trong 5 phút kể từ khi hóa đơn
                         được tạo, sau 5 phút hệ thống sẽ tự hủy giao dịch.</p>
                     <p id="countdown" style="color: red">Countdown</p>
-                    <p>Thực hiện chuyển tiền vào tài khoản thẻ siêu theo thông tin bên. Hệ thống sẽ xử lý giao dịch khi thực hiện chuyển tiền thành công</p>
+                    <p>Thực hiện chuyển tiền vào tài khoản thẻ siêu theo thông tin bên. Hệ thống sẽ xử lý giao dịch khi
+                        thực hiện chuyển tiền thành công</p>
                     <div class="l-list-button-page button-thesieure">
                         <div class="l-button-confirm-pay">
-                            <a href="{{'/payment/confirm/'.$bill_code}}" type="button" id="confirm-pay" class="confirm-pay">Xác nhận thanh toán</a>
+                            <a href="{{'/payment/confirm/'.$bill_code}}" type="button" id="confirm-pay"
+                               class="confirm-pay">Xác nhận thanh toán</a>
                         </div>
                         <div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-        </div>
-    </div>
-    <input type="text" id="expire_date" value="{{$expireDate}}" hidden>
-    <script src="/template/user/js/bill.js"></script>
+            <input type="text" id="expire_date" value="{{$expireDate}}" hidden>
+            <script src="/template/user/js/bill.js"></script>
 @endsection

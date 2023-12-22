@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Http\Services\bill\BillService;
+use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
 

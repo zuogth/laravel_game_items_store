@@ -6,12 +6,11 @@ use App\Mail\MyMail;
 use App\Models\Bill;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
 
 class BillService
 {
@@ -157,7 +156,7 @@ class BillService
                 ->where("status", $status)
                 ->orderBy("bill_date", "DESC")
                 ->take($top)
-                ->select(\DB::raw('SUBSTRING(bill_code,1,15) as bill_code') , 'BILL.bill_date', 'BILL.pay_type', 'BILL.total_price')->get();
+                ->select(\DB::raw('SUBSTRING(bill_code,1,15) as bill_code'), 'BILL.bill_date', 'BILL.pay_type', 'BILL.total_price')->get();
             return $bills;
         } catch (\Exception $ex) {
             Log::error($ex);

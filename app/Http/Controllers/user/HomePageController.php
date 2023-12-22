@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Http\Services\admin\bill\AdminBillService;
 use App\Http\Services\bill\BillService;
-use App\Http\Services\product\ProductService;
 use App\Http\Services\category\CategoryService;
+use App\Http\Services\product\ProductService;
 
 
 class HomePageController extends Controller
@@ -32,7 +31,7 @@ class HomePageController extends Controller
             $result[$cate->name] = $this->productService->findByCate($cate->id);
         }
 
-        $bills = $this->billService->getTopBillByStatus(3,20);
+        $bills = $this->billService->getTopBillByStatus(3, 20);
 
         return view('user.home', [
             'title' => 'Trang chủ',

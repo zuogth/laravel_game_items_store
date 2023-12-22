@@ -36,6 +36,7 @@
     background-color: #28a745;
     border-color: #23923d;
 }
+
 .l-list-button-page {
     display: flex;
     justify-content: flex-end;
@@ -48,7 +49,7 @@
     margin-bottom: 1rem;
 }
 
-.l-button-confirm-pay> .confirm-pay {
+.l-button-confirm-pay > .confirm-pay {
     background-color: #26a558;
     color: #fff;
     height: 2.6rem;
@@ -60,19 +61,22 @@
     display: flex;
     justify-content: center;
 }
-.l-button-confirm-pay> .confirm-pay[disabled] {
+
+.l-button-confirm-pay > .confirm-pay[disabled] {
     background-color: #343434;
 }
-.l-button-confirm-pay > .confirm-pay:hover{
+
+.l-button-confirm-pay > .confirm-pay:hover {
     color: #fff;
     background-color: #00742f;
 }
 
-.l-button-confirm-pay > .confirm-pay[disabled]:hover{
+.l-button-confirm-pay > .confirm-pay[disabled]:hover {
     color: #fff;
     background-color: #343434;
 }
-.button-thesieure{
+
+.button-thesieure {
     position: absolute;
     bottom: 0;
     right: 0;

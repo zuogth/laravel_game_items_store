@@ -111,12 +111,13 @@ label#select_imgs {
     color: #212529;
     background-color: transparent
 }
-.pay-custom{
+
+.pay-custom {
     color: #fff;
     background-color: #26a558;
 }
 
-.pay-custom:hover{
+.pay-custom:hover {
     color: #fff;
     background-color: #00742f;
 }

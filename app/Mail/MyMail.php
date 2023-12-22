@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -12,13 +11,15 @@ use Illuminate\Queue\SerializesModels;
 class MyMail extends Mailable
 {
     use Queueable, SerializesModels;
+
     private $bill_code;
+
     /**
      * Create a new message instance.
      */
     public function __construct($param)
     {
-        $this->bill_code=$param;
+        $this->bill_code = $param;
     }
 
     /**
@@ -37,9 +38,9 @@ class MyMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view:'email.noti',
+            view: 'email.noti',
             with: [
-                'bill_code'=>$this->bill_code
+                'bill_code' => $this->bill_code
             ]
         );
     }

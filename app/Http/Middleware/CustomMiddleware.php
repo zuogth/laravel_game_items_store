@@ -13,15 +13,15 @@ class CustomMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user=Auth::user();
-        if($user->role=='QL'){
+        $user = Auth::user();
+        if ($user->role == 'QL') {
             return $next($request);
         }
-        Session::flash('error','Bạn không có quyền truy cập');
+        Session::flash('error', 'Bạn không có quyền truy cập');
         return redirect()->route('login');
 
     }

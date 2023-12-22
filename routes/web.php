@@ -47,7 +47,7 @@ Route::prefix('/')->group(function () {
     Route::get('/category/{code}', [HomePageController::class, 'category']);
 
 });
-Route::middleware(['auth','role'])->group(function () {
+Route::middleware(['auth', 'role'])->group(function () {
     Route::prefix('/admin')->group(function () {
         Route::get('/bill', [AdminBillController::class, 'index']);
         Route::get('/bill-ajax', [AdminBillController::class, 'index']);
