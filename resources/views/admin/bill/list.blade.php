@@ -14,6 +14,7 @@
                     <thead>
                     <tr>
                         <th>Mã giao dịch</th>
+                        <th>Mã sản phẩm</th>
                         <th>Thời gian</th>
                         <th>Hết hạn</th>
                         <th>Mã tài khoản</th>
@@ -21,6 +22,7 @@
                         <th>Giá</th>
                         <th>Tổng</th>
                         <th style="width:10%">Trạng thái</th>
+                        <th>Phương thức</th>
                         <th style="width:10%"></th>
                     </tr>
                     </thead>
@@ -62,13 +64,14 @@
                 "lengthChange": false,
                 "searching": true,
                 "ordering": true,
-                aaSorting: [[1, 'desc']],
+                aaSorting: [[2, 'desc']],
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
                 ajax: "{{url('/admin/bill-ajax')}}",
                 columns: [
                     {"data": "bill_code"},
+                    {"data": "product_code"},
                     {"data": "bill_date"},
                     {"data": "expire_date"},
                     {"data": "id_game"},
@@ -86,6 +89,11 @@
                     {
                         "data": "status", render: function (data) {
                             return statusBill(data);
+                        }
+                    },
+                    {
+                        "data": "pay_type", render: function (data) {
+                            return convertPayType(data);
                         }
                     },
                     {

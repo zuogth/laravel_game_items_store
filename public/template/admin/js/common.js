@@ -21,3 +21,13 @@ function canHandleBill(status, id) {
     }
     return "";
 }
+
+
+function convertPayType(payType) {
+    if (payType == 1) {
+        return '<button name="status" class="btn btn-block btn-primary btn-sm">Ngân hàng</button>';
+    } else if (payType == 2) {
+        return '<button name="status" class="btn btn-block btn-info btn-sm">Thẻ siêu rẻ</button>';
+    }
+    return "";
+}

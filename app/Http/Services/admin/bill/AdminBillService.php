@@ -13,9 +13,10 @@ class AdminBillService
     public function findAll()
     {
         try {
-            $bills = DB::table('BILL')
-                ->orderBy("bill_date", "DESC")
-                ->select('BILL.*')->get();;
+            return DB::table('BILL')
+                ->join('PRODUCT', 'BILL.product_id', '=', 'PRODUCT.id')
+                ->select('BILL.*', 'PRODUCT.code as product_code')
+                ->get();
             return $bills;
         } catch (\Exception $ex) {
             Log::error($ex);
