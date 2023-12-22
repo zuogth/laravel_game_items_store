@@ -14,5 +14,6 @@
 <link rel="stylesheet" href="/template/user/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="/template/user/dist/css/adminlte.min.css">
 <link rel="stylesheet" href="/template/user/dist/css/custom.css">
+<link rel="stylesheet" href="/template/user/dist/css/home.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @yield('head')

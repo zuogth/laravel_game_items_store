@@ -5,15 +5,15 @@
         <!-- jquery validation -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">{{$title}}</h3>
+                <h3 class="card-title">{!! $product->name !!}</h3>
             </div>
             <form action="{{ '/payment/'.$bill_code }}" method="POST" id="form-buy-product">
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-sm-6">
-                            <label for="productname">Tên sản phẩm</label>
+                            <label for="productname">M</label>
                             <input type="text" name="name" class="form-control" id="productname"
-                                   placeholder="Enter name" value="{{$product->name}}" readonly>
+                                   placeholder="Enter name" value="{!! $product->code !!}" readonly>
                             @error('name')
                             <span style="color: #da0101">{{$message}}</span>
                             @enderror

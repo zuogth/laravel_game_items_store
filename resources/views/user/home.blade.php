@@ -23,7 +23,7 @@
                             <tbody>
                             @foreach($mapProduct as $product)
                                 <tr>
-                                    <td>{!! $product->name !!}</td>
+                                    <td class="name-product">{!! $product->name !!}</td>
                                     <td class="text-center">
                                         <button class="btn btn-block btn-outline-success btn-sm">
                                             <span class="span-btn">Còn lại:<b> {{$product->total_quantity}}</b></span>
@@ -44,10 +44,18 @@
                                         </button>
                                     </td>
                                     <td class="text-center">
-                                        <a href="/products/{{$product->code}}" class="btn btn-primary btn-sm">
-                                            <i class="fas fa-cart-arrow-down"></i>
-                                            MUA NGAY
-                                        </a>
+                                        @if($product->total_quantity > 0)
+                                            <a href="/products/{{$product->code}}" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-cart-arrow-down"></i>
+                                                MUA NGAY
+                                            </a>
+                                        @endif
+                                        @if($product->total_quantity == 0)
+                                            <button class="btn btn-primary btn-sm" disabled>
+                                                <i class="fal fa-sad-tear"></i>
+                                                HẾT HÀNG
+                                            </button>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -61,7 +69,7 @@
     </div>
 
 
-    <div class="col-md-6">
+    <div class="col-md-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
         <!-- jquery validation -->
         <div class="card card-primary">
             <div class="card-header">
@@ -112,4 +120,5 @@
         </div>
 
     </div>
+
 @endsection
