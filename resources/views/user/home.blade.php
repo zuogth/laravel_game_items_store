@@ -59,4 +59,57 @@
         </div>
 
     </div>
+
+
+    <div class="col-md-6">
+        <!-- jquery validation -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Lịch sử giao dịch</h3>
+            </div>
+            <br/>
+
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card-body table-responsive p-0" style="height: 300px;">
+                    <table class="table table-bordered table-hover" id="table-data">
+                        <thead style="background:#12214E;color:white;">
+                        <tr>
+                            <th class="text-center hidemobile">Mã giao dịch</th>
+                            <th class="text-center hidemobile">Ngày giao dịch</th>
+                            <th class="text-center hidemobile">Phương thức</th>
+                            <th class="text-center hidemobile">Tổng tiền</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($bills as $bill)
+                            <tr>
+                                <td>{{$bill->bill_code}}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-block btn-outline-success btn-sm">
+                                        <span class="span-btn"><b> {{$bill->bill_date}}</b></span>
+                                    </button>
+                                </td>
+                                <td class="text-center">
+                                    {!! \App\Helpers\Helper::convertPayType($bill->pay_type) !!}
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-block btn-outline-danger btn-sm">
+                                        <span class="span-btn">
+                                             <i class="fas fa-money-bill"></i>
+                                            <b>   {!! \App\Helpers\Helper::price($bill->total_price) !!}</b>
+                                        </span>
+                                    </button>
+                                </td>
+
+
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
 @endsection
