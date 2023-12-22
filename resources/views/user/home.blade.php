@@ -84,7 +84,7 @@
                         <tbody>
                         @foreach($bills as $bill)
                             <tr>
-                                <td>{{$bill->bill_code}}</td>
+                                <td>{{$bill->bill_code}}...</td>
                                 <td class="text-center">
                                     <button class="btn btn-block btn-outline-success btn-sm">
                                         <span class="span-btn"><b> {{$bill->bill_date}}</b></span>

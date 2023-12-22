@@ -38,7 +38,7 @@ class BillService
                 'total_price' => $request->input('quantity') * $request->input('price'),
                 'status' => '1',
                 'id_game' => (string)$request->input('id_game'),
-                'pay_type'=>(string)$request->input('pay_type')
+                'pay_type' => (string)$request->input('pay_type')
             ]);
         } catch (\Exception $ex) {
             Log::error($ex);
@@ -150,14 +150,14 @@ class BillService
         return true;
     }
 
-    public function getTopBillByStatus($status,$top)
+    public function getTopBillByStatus($status, $top)
     {
         try {
             $bills = DB::table('BILL')
                 ->where("status", $status)
                 ->orderBy("bill_date", "DESC")
                 ->take($top)
-                ->select('BILL.*')->get();;
+                ->select(\DB::raw('SUBSTRING(bill_code,1,15) as bill_code') , 'BILL.bill_date', 'BILL.pay_type', 'BILL.total_price')->get();
             return $bills;
         } catch (\Exception $ex) {
             Log::error($ex);
