@@ -21,7 +21,8 @@ class Bill extends Model
         'price',
         'total_price',
         'status',
-        'id_game'
+        'id_game',
+        'pay_type'
     ];
 
     public function product()

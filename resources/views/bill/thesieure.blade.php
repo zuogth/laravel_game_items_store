@@ -17,9 +17,9 @@
                                 <i class="nav-icon fas fa-university"></i>
                                 <div>
                                     <p>
-                                        Ngân hàng
+                                        Chuyển khoản
                                     </p>
-                                    <p>SHB</p>
+                                    <p>THE SIEU RE</p>
                                 </div>
 
                             </div>
@@ -96,18 +96,12 @@
                     </ul>
                 </div>
                 <div class="col-sm-8 info-pay-qr">
-                    <h3>Thông tin thanh toán</h3>
+                    <h3>Thanh toán qua thẻ siêu rẻ</h3>
                     <p><span style="color: red">NOTE:</span> Vui lòng thực hiện giao dịch trong 5 phút kể từ khi hóa đơn
                         được tạo, sau 5 phút hệ thống sẽ tự hủy giao dịch.</p>
                     <p id="countdown" style="color: red">Countdown</p>
-                    <p>Thực hiện chuyển tiền vào tài khoản ngân hàng theo thông tin bên hoặc quét mã QR để thanh
-                        toán</p>
-                    <p>Hệ thống sẽ xử lý giao dịch khi thực hiện chuyển tiền thành công</p>
-                    @if($qr->code == '00')
-                        <img src="{{ $qr->data->qrDataURL }}" alt="" width=300 height=300>
-                    @else
-                        <img src="" alt="QR không sẵn sàng, hãy chuyển tiền theo thông tin bên" width=300 height=300>
-                    @endif
+                    <p>Thực hiện chuyển tiền vào tài khoản thẻ siêu theo thông tin bên. Hệ thống sẽ xử lý giao dịch khi thực hiện chuyển tiền thành công</p>
+                    <img src="/template/user/dist/img/logo_thesieurecom.png" alt="" width=300 height=300>
                     <div class="l-list-button-page">
                         <div class="l-button-confirm-pay">
                             <a href="{{'/payment/confirm/'.$bill_code}}" type="button" id="confirm-pay" class="confirm-pay">Xác nhận thanh toán</a>

@@ -20,49 +20,71 @@ class BillController extends Controller
         $this->billService = $billService;
     }
 
-    public function index($param){
+    public function index($param)
+    {
         $bill = $this->billService->findByBillCode($param);
 
-        if(!$bill){
+        if (!$bill) {
             return redirect('/notfound');
         }
-
-        $expire = $bill->expire_date;
         $bill_code = $bill->bill_code;
+        $expire = $bill->expire_date;
+
+        $qr = null;
+
+        $payType = $bill->pay_type;
+        $viewName = 'bill.pay';
+
+        $accountNo = env('API_QR_ACCOUNT');
+        $accountName = env('API_QR_ACCOUNT_NAME');
 
         $content = $bill_code;
         $amount = (string)round($bill->total_price);
 
-        $qr = $this->billService->callApiQR($content, $amount);
+        if ($payType == '2') {
+            $viewName = 'bill.thesieure';
 
-        return view('bill.pay', [
+            $accountNo = env('ACCOUNT_THESIEURE');
+            $accountName = env('ACCOUNT_NAME_THESIEURE');
+        } else {
+            $qr = $this->billService->callApiQR($content, $amount)->getData();
+        }
+
+        return view($viewName, [
             'title' => 'Thanh toán',
-            'qr' => $qr->getData(),
+            'qr' => $qr,
             'amount' => $amount,
-            'content'=> $content,
-            'expireDate'=>$expire,
-            'bill_code'=>$bill_code
+            'content' => $content,
+            'expireDate' => $expire,
+            'bill_code' => $bill_code,
+            'accountNo' => $accountNo,
+            'accountName' => $accountName
         ]);
     }
 
     public function store(Request $request)
     {
-
         $bill = $this->billService->store($request);
         if (!$bill) {
             Session::flash('error', 'Có lỗi xảy ra, xin thử lại sau!');
             return redirect()->back();
         }
 
-        return redirect()->route('show_bill', [
-            'bill_code'=>$request->input('bill_code')
+        $payType = (string)$request->input('pay_type');
+        $routeName = 'show_bill_b';
+        if ($payType == '2') {
+            $routeName = 'show_bill_t';
+        }
+        return redirect()->route($routeName, [
+            'bill_code' => $request->input('bill_code')
         ]);
     }
 
-    public function confirmPay($param){
+    public function confirmPay($param)
+    {
 
         $bill = $this->billService->confirmPay($param);
-        if(!$bill){
+        if (!$bill) {
             return redirect()->back();
         }
 
