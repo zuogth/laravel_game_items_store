@@ -19,7 +19,7 @@
                                     <p>
                                         Ngân hàng
                                     </p>
-                                    <p>SHB</p>
+                                    <p>{{$bankName}}</p>
                                 </div>
 
                             </div>

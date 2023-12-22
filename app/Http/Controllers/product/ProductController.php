@@ -20,6 +20,9 @@ class ProductController extends Controller
     {
 
         $product = $this->productService->findByCode($code);
+        if(!$product){
+            return redirect('/notfound');
+        }
         $bill_code = Utils::generateBillCode();
 
         return view('product.show', [

@@ -33,6 +33,7 @@ class BillController extends Controller
 
         $accountNo = env('API_QR_ACCOUNT');
         $accountName = env('API_QR_ACCOUNT_NAME');
+        $bankName = env('BANK_NAME');
 
         $content = $bill_code;
         $amount = (string)round($bill->total_price);
@@ -54,7 +55,8 @@ class BillController extends Controller
             'expireDate' => $expire,
             'bill_code' => $bill_code,
             'accountNo' => $accountNo,
-            'accountName' => $accountName
+            'accountName' => $accountName,
+            'bankName'=>$bankName
         ]);
     }
 
