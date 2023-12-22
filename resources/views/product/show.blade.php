@@ -51,6 +51,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label for="pay_type">Phương thức thanh toán</label>
+                            <select id="pay_type" name="pay_type" class="form-control">
+                                <option value="1">Ngân hàng</option>
+                                <option value="2">Thẻ siêu rẻ</option>
+                            </select>
+                            <div class="modal-errorMessage">
+                                <span class="errorMessage"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <input type="text" name="product_id" class="form-control" value="{{$product->id}}" hidden>
                 <input type="text" name="bill_code" class="form-control" value="{{$bill_code}}" hidden>
@@ -59,7 +71,7 @@
                 @csrf
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Thanh toán</button>
+                    <button type="submit" class="btn pay-custom">Thanh toán</button>
                 </div>
             </form>
         </div>
@@ -77,6 +89,7 @@
                 validation.isRequired("#id_game", "Bạn hãy nhập ID Game của bạn"),
                 validation.isMin("#quantity", min = 0, `Số lượng muốn mua phải lớn hơn ${min}`),
                 validation.isMax("#quantity", max = total_quantity, `Số lượng muốn mua phải nhỏ hơn hoặc bằng ${max}`),
+                validation.isRequired("#pay_type","Bạn hãy chọn phương thức thanh toán")
             ],
             onSubmit: function (data) {
                 console.log(data)
