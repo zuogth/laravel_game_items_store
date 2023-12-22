@@ -71,11 +71,8 @@ class BillController extends Controller
         }
 
         $payType = (string)$request->input('pay_type');
-        $routeName = 'show_bill_b';
-        if ($payType == '2') {
-            $routeName = 'show_bill_t';
-        }
-        return redirect()->route($routeName, [
+
+        return redirect()->route('show_bill', [
             'bill_code' => $request->input('bill_code')
         ]);
     }
