@@ -14,13 +14,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column">
                         <li class="nav-item">
                             <div class="info-pay">
-                                <i class="nav-icon fas fa-university"></i>
-                                <div>
-                                    <p>
-                                        Chuyển khoản
-                                    </p>
-                                    <p>THE SIEU RE</p>
-                                </div>
+                                <img src="/template/user/dist/img/logo_thesieurecom.png" alt="">
 
                             </div>
 
@@ -101,8 +95,7 @@
                         được tạo, sau 5 phút hệ thống sẽ tự hủy giao dịch.</p>
                     <p id="countdown" style="color: red">Countdown</p>
                     <p>Thực hiện chuyển tiền vào tài khoản thẻ siêu theo thông tin bên. Hệ thống sẽ xử lý giao dịch khi thực hiện chuyển tiền thành công</p>
-                    <img src="/template/user/dist/img/logo_thesieurecom.png" alt="" width=300 height=300>
-                    <div class="l-list-button-page">
+                    <div class="l-list-button-page button-thesieure">
                         <div class="l-button-confirm-pay">
                             <a href="{{'/payment/confirm/'.$bill_code}}" type="button" id="confirm-pay" class="confirm-pay">Xác nhận thanh toán</a>
                         </div>

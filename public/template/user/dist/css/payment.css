@@ -72,3 +72,8 @@
     color: #fff;
     background-color: #343434;
 }
+.button-thesieure{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
