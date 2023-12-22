@@ -16,6 +16,7 @@
                         <th>Mã giao dịch</th>
                         <th>Thời gian</th>
                         <th>Hết hạn</th>
+                        <th>Mã tài khoản</th>
                         <th>Số lượng</th>
                         <th>Giá</th>
                         <th>Tổng</th>
@@ -70,6 +71,7 @@
                     {"data": "bill_code"},
                     {"data": "bill_date"},
                     {"data": "expire_date"},
+                    {"data": "id_game"},
                     {"data": "quantity"},
                     {
                         "data": "price", "render": function (data) {
