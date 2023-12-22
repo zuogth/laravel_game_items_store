@@ -20,7 +20,8 @@ class Bill extends Model
         'quantity',
         'price',
         'total_price',
-        'status'
+        'status',
+        'id_game'
     ];
 
     public function product()

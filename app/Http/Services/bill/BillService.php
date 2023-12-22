@@ -36,7 +36,8 @@ class BillService
                 'price'=> $request->input('price'),
                 'quantity' => (string)$request->input('quantity'),
                 'total_price' => $request->input('quantity') * $request->input('price'),
-                'status' => '1'
+                'status' => '1',
+                'id_game' => (string)$request->input('id_game')
             ]);
         } catch (\Exception $ex) {
             Log::error($ex);
