@@ -18,15 +18,10 @@ class BillService
     {
         try {
             $expire = $this->getExpireDate();
-            $newAvail = $request->input('total_quantity') - $request->input('quantity');
-            $newSold = $request->input('quantity') + $request->input('sold');
 
             DB::table('PRODUCT')
                 ->where('PRODUCT.id', '=', (string)$request->input('product_id'))
-                ->update([
-                    'PRODUCT.total_quantity' => $newAvail,
-                    'PRODUCT.sold' => $newSold,
-                ]);
+                ->decrement('PRODUCT.total_quantity',(int)$request->input('quantity'));
 
             Bill::create([
                 'product_id' => (string)$request->input('product_id'),
@@ -132,10 +127,6 @@ class BillService
                 DB::table('PRODUCT')
                     ->where('PRODUCT.id', '=', $bill->product_id)
                     ->increment('PRODUCT.total_quantity', $bill->quantity);
-
-                DB::table('PRODUCT')
-                    ->where('PRODUCT.id', '=', $bill->product_id)
-                    ->decrement('PRODUCT.sold', $bill->quantity);
             }
             DB::table('BILL')
                 ->where('BILL.status', '=', '1')
