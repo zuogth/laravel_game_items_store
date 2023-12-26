@@ -26,7 +26,7 @@ class ProductController extends Controller
         $bill_code = Utils::generateBillCode();
 
         return view('product.show', [
-            'title' => $product->name,
+            'title' => $product->code,
             'product' => $product,
             'bill_code' => $bill_code
         ]);

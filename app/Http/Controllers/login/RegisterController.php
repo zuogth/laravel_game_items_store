@@ -20,7 +20,7 @@ class RegisterController extends Controller
     {
         $result = $this->userService->create($request);
         if ($result) {
-            return redirect('/user/login');
+            return redirect('/login');
         }
         return redirect()->back();
     }

@@ -68,8 +68,6 @@ class BillController extends Controller
             return redirect()->back();
         }
 
-        $payType = (string)$request->input('pay_type');
-
         return redirect()->route('show_bill', [
             'bill_code' => $request->input('bill_code')
         ]);

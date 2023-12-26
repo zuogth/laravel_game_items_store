@@ -137,7 +137,7 @@ validation.isEmail = (selector, message) => {
         selector: selector,
         test: (value) => {
             regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-            return regex.test(value) ? undefined : message || "trường này phải là noti.blade.php"
+            return regex.test(value) ? undefined : message || "trường này phải là email"
         }
     }
 }

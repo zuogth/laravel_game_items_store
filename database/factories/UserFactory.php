@@ -25,7 +25,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'noti.blade.php' => fake()->unique()->safeEmail(),
+            'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             // 'password'=>'$2y$10$7mtIjJU5ZVPNMF0IsuWw7..kzm5CPB7vlWid2brdsk9g.ttznJUfC',
@@ -34,7 +34,7 @@ class UserFactory extends Factory
     }
 
     /**
-     * Indicate that the model's noti.blade.php address should be unverified.
+     * Indicate that the model's email address should be unverified.
      */
     public function unverified(): static
     {

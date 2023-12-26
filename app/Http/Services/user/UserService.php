@@ -3,6 +3,7 @@
 namespace App\Http\Services\user;
 
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -12,10 +13,15 @@ class UserService
     public function create($request)
     {
         try {
-            $user = User::create([
+            $user = $this->findByEmail((string)$request->input('email'));
+            if($user){
+                Session::flash('error', 'Email này đã được đăng ký');
+                return false;
+            }
+            User::create([
                 'full_name' => (string)$request->input('fullname'),
                 'phone' => (string)$request->input('phone'),
-                'noti.blade.php' => (string)$request->input('noti.blade.php'),
+                'email' => (string)$request->input('email'),
                 'password' => bcrypt((string)$request->input('password')),
                 'role' => 'KH',
                 'status' => '1'
@@ -30,7 +36,8 @@ class UserService
 
     public function findByEmail($email)
     {
-        return User::where('noti.blade.php', '=', $email)->first();
+        return DB::table('USER')
+        ->where('email', '=', $email)->first();
     }
 
     public function updateDetail($id, $request)

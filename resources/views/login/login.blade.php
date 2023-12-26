@@ -12,11 +12,11 @@
             <div class="l-detail-page">
                 <div class="l-themes-login-page"><h3>Đăng nhập</h3></div>
 
-                <div class="l-themes-register-page"><h3><a href="/user/register">Đăng ký</a></h3></div>
+                <div class="l-themes-register-page"><h3><a href="/register">Đăng ký</a></h3></div>
             </div>
             <form method="POST" action="" id="m-form-login">
                 <div class="form-login-input-page">
-                    <div class="l-themes-page"><label for="username">Tài khoản email *</label></div>
+                    <div class="l-themes-page"><label for="email">Tài khoản email *</label></div>
                     <input type="text" id="email" placeholder="Nhập email *" name="email">
                     <div class="modal-errorMessage">
                         <span class="errorMessage"></span>
@@ -44,15 +44,16 @@
     </div>
 </div>
 <!-- /.login-box -->
-<script src="/template/user/js/validate.js"></script>
+
+@include('user.footer')
 <script>
     validation({
         form: "#m-form-login",
         error: ".errorMessage",
         formGroupSelector: '.form-login-input-page',
         rules: [
-            validation.isRequired("#noti.blade.php", "Bạn hãy nhập noti.blade.php"),
-            validation.isEmail("#noti.blade.php", "Trường này phải là noti.blade.php"),
+            validation.isRequired("#email", "Bạn hãy nhập email"),
+            validation.isEmail("#email", "Trường này phải là email"),
             validation.isRequired("#password", "Bạn hãy nhập mật khẩu"),
             validation.isMinLength("#password", min = 6, `Số kí tự phải lớn hơn hoặc bằng ${min}`)
         ],
@@ -61,6 +62,5 @@
         }
     })
 </script>
-@include('user.footer')
 </body>
 </html>

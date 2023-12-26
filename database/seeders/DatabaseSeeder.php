@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
-        //     'noti.blade.php' => 'test@example.com',
+        //     'email' => 'test@example.com',
         // ]);
     }
 }

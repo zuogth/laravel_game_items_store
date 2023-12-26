@@ -12,7 +12,7 @@
             <div class="l-detail-page">
                 <div class="l-themes-login-page"><h3>Đăng ký</h3></div>
 
-                <div class="l-themes-register-page"><h3><a href="/user/login">Đăng nhập</a></h3></div>
+                <div class="l-themes-register-page"><h3><a href="/login">Đăng nhập</a></h3></div>
             </div>
             <form method="POST" action="" id="m-form-register-main">
                 <div class="form-login-input-page">
@@ -20,7 +20,7 @@
                     <input type="text" id="email" placeholder="Nhập email *" name="email">
                     <div class="modal-errorMessage">
                         <span class="errorMessage"></span>
-                        @error('noti.blade.php')
+                        @error('email')
                         <span style="color: #da0101">{{$message}}</span>
                         @enderror
                     </div>
@@ -67,8 +67,8 @@
         </div>
     </div>
 </div>
-<!-- /.login-box -->
-<script src="/template/user/js/validate.js"></script>
+
+@include('user.footer')
 <script>
     validation({
         form: "#m-form-register-main",
@@ -82,8 +82,8 @@
                 return document.querySelector('#m-form-register-main #password').value
             }, "Vui lòng xác nhập lại mật khẩu"),
             validation.isRequired("#fullname", "Bạn hãy nhập họ và tên"),
-            validation.isRequired("#noti.blade.php", "Bạn hãy nhập noti.blade.php"),
-            validation.isEmail("#noti.blade.php", "Trường này phải là noti.blade.php"),
+            validation.isRequired("#email", "Bạn hãy nhập email"),
+            validation.isEmail("#email", "Trường này phải là email"),
             validation.isRequired("#phone", "Bạn hãy nhập số điện thoại"),
 
         ],
@@ -92,6 +92,5 @@
         }
     })
 </script>
-@include('user.footer')
 </body>
 </html>
