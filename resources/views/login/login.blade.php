@@ -35,7 +35,7 @@
                         <button type="submit" id="login" class="login">Đăng nhập</button>
                     </div>
                     <div class="l-footer-page">
-                        <div class="forgot-password-page"><a href="/user/forgot">Quên mật khẩu?</a></div>
+                        <div class="forgot-password-page"><a href="/forgot">Quên mật khẩu?</a></div>
                     </div>
                 </div>
                 @csrf

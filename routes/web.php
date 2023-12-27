@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\bill\AdminBillController;
 use App\Http\Controllers\bill\BillController;
 use App\Http\Controllers\login\LoginController;
+use App\Http\Controllers\login\PasswordController;
 use App\Http\Controllers\login\RegisterController;
 use App\Http\Controllers\product\ProductController;
 use App\Http\Controllers\user\HomePageController;
@@ -32,6 +33,12 @@ Route::prefix('/')->group(function () {
 
     Route::get('/register', [RegisterController::class, 'register']);
     Route::post('/register', [RegisterController::class, 'store']);
+
+    Route::get('/change-password', [PasswordController::class, 'index']);
+    Route::post('/change-password', [PasswordController::class, 'store']);
+
+    Route::get('/forgot', [PasswordController::class, 'forgot']);
+    Route::post('/forgot', [PasswordController::class, 'resetPass']);
 
     #Products
     Route::get('/products/{code}', [ProductController::class, 'show']);

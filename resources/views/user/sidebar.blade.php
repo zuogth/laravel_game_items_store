@@ -73,6 +73,14 @@
                 @endif
                 @if(\Illuminate\Support\Facades\Auth::user())
                     <li class="nav-item">
+                        <a href="/change-password" class="nav-link">
+                            <i class="nav-icon fas fa-key"></i>
+                            <p>
+                                Đổi mật khẩu
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="/logout" class="nav-link">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>
