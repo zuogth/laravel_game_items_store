@@ -167,7 +167,9 @@ class BillService
     {
         try {
             return DB::table('BILL')
-                ->where('user_id','=',$userId)
+                ->join('PRODUCT','PRODUCT.id','=','BILL.product_id')
+                ->where('BILL.user_id','=',$userId)
+                ->select('BILL.*','PRODUCT.code as product_code')
                 ->get();
         }catch (\Exception $ex){
             Log::error($ex->getTraceAsString());

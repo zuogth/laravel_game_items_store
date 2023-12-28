@@ -11,9 +11,9 @@
 
         <div class="col-md-12">
             <!-- jquery validation -->
-            <div class="card-body table-responsive p-0" style="height: 300px;">
+            <div class="card-body table-responsive p-0" style="height: 400px;">
                 <table class="table table-bordered table-hover" id="table-data">
-                    <thead style="background:#12214E;color:white;">
+                    <thead style="background:#12214E;color:white;top: 0" class="position-sticky">
                     <tr>
                         <th class="text-center hidemobile">Mã giao dịch</th>
                         <th class="text-center hidemobile">Mã sản phẩm</th>

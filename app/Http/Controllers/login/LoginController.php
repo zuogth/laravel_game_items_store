@@ -31,7 +31,7 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($credentials, $request->input('remember'))) {
+        if (Auth::attempt($credentials)) {
 
             $user = Auth::user();
             if ($user->status != 0) {

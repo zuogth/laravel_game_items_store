@@ -85,7 +85,7 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a href="/history" class="nav-link">
+                            <a href="/bills/history" class="nav-link">
                                 <i class="nav-icon fas fa-history"></i>
                                 <p>
                                     Lịch sử mua hàng
