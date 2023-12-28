@@ -20,10 +20,6 @@ class BillService
     {
         try {
 
-            $billExpire = $this->checkBillExpireByUser($request->input('user_id'));
-            if(!$billExpire){
-                return false;
-            }
             $quantityProd = $this->checkQuantity($request->input('product_id'),$request->input('quantity'));
             if(!$quantityProd){
                 return false;
@@ -163,6 +159,19 @@ class BillService
             return $bills;
         } catch (\Exception $ex) {
             Log::error($ex->getTraceAsString());
+            return [];
+        }
+    }
+
+    public function findByUser($userId)
+    {
+        try {
+            return DB::table('BILL')
+                ->where('user_id','=',$userId)
+                ->get();
+        }catch (\Exception $ex){
+            Log::error($ex->getTraceAsString());
+            Session::flash('error', 'Có lỗi xảy ra, xin thử lại sau!');
             return [];
         }
     }

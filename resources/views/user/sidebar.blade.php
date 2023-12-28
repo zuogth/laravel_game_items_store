@@ -73,33 +73,42 @@
                         </p>
                     </a>
                 </li>
-                @if(\Illuminate\Support\Facades\Auth::user() && \Illuminate\Support\Facades\Auth::user()->role == 'QL')
-                    <li class="nav-item">
-                        <a href="/admin/bill" class="nav-link">
-                            <i class="nav-icon fas fa-home"></i>
-                            <p>
-                                Quản lý đơn hàng
-                            </p>
-                        </a>
-                    </li>
-                @endif
                 @if(\Illuminate\Support\Facades\Auth::user())
-                    <li class="nav-item">
-                        <a href="/change-password" class="nav-link">
-                            <i class="nav-icon fas fa-key"></i>
-                            <p>
-                                Đổi mật khẩu
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/logout" class="nav-link">
-                            <i class="nav-icon fas fa-sign-out-alt"></i>
-                            <p>
-                                Đăng xuất
-                            </p>
-                        </a>
-                    </li>
+                    @if (\Illuminate\Support\Facades\Auth::user()->role == 'QL')
+                        <li class="nav-item">
+                            <a href="/admin/bill" class="nav-link">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>
+                                    Quản lý đơn hàng
+                                </p>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a href="/history" class="nav-link">
+                                <i class="nav-icon fas fa-history"></i>
+                                <p>
+                                    Lịch sử mua hàng
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/change-password" class="nav-link">
+                                <i class="nav-icon fas fa-key"></i>
+                                <p>
+                                    Đổi mật khẩu
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/logout" class="nav-link">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>
+                                    Đăng xuất
+                                </p>
+                            </a>
+                        </li>
+                    @endif
                 @endif
             </ul>
         </nav>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Notification\Telegram;
 use App\Http\Services\bill\BillService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class BillController extends Controller
@@ -83,5 +84,18 @@ class BillController extends Controller
         }
 
         return redirect()->route('home');
+    }
+
+    public function history()
+    {
+        $user = Auth::user();
+        if(!$user){
+            return redirect()->route('login');
+        }
+        $bills = $this->billService->findByUser($user->id);
+        return view('bill.history',[
+            'title'=>'Lịch sử mua hàng',
+            'bills'=>$bills
+        ]);
     }
 }

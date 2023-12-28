@@ -16,8 +16,8 @@ class Telegram
                 "base_uri" => "https://api.telegram.org",
             ]);
 
-            $bot_token = "6838864822:AAGWS22EAFPhfJl5GGbSeTVmsvI5NKF_6f0";
-            $chat_id = "5273636179";
+            $bot_token = env('BOT_TOKEN');
+            $chat_id = env('CHAT_ID');
 
             $response = $client->request("GET", "/bot$bot_token/sendMessage", [
                 "query" => [
@@ -32,7 +32,7 @@ class Telegram
             if ($arr_body->ok) {
                 echo "Message posted.";
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage();
         }
     }

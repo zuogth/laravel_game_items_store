@@ -35,7 +35,8 @@
                         <span class="errorMessage"></span>
                     </div>
                 </div>
-                <input type="text" id="id-user" name="id-user" value="{{\Illuminate\Support\Facades\Auth::user()->id}}" hidden>
+                <input type="text" id="id-user" name="id-user"
+                       value="{{\Illuminate\Support\Facades\Auth::user() ? \Illuminate\Support\Facades\Auth::user()->id : 0}}" hidden>
                 <div class="l-list-button-page">
                     <div class="l-button-register-page">
                         <button type="submit" id="register" class="register">Đồng ý</button>

@@ -34,9 +34,6 @@ Route::prefix('/')->group(function () {
     Route::get('/register', [RegisterController::class, 'register']);
     Route::post('/register', [RegisterController::class, 'store']);
 
-    Route::get('/change-password', [PasswordController::class, 'index']);
-    Route::post('/change-password', [PasswordController::class, 'store']);
-
     Route::get('/forgot', [PasswordController::class, 'forgot']);
     Route::post('/forgot', [PasswordController::class, 'resetPass']);
 
@@ -48,10 +45,14 @@ Route::prefix('/')->group(function () {
         #Bill
         Route::post('/payment/{bill_code}', [BillController::class, 'store']);
         Route::get('/payment/{bill_code}', [BillController::class, 'index'])->name('show_bill');
+        Route::get('/bills/history', [BillController::class, 'history']);
 
         Route::get('/payment/confirm/{bill_code}', [BillController::class, 'confirmPay']);
-    });
 
+        Route::get('/change-password', [PasswordController::class, 'index']);
+        Route::post('/change-password', [PasswordController::class, 'store']);
+
+    });
 
     #CATEGORY
     Route::get('/category/{code}', [HomePageController::class, 'category']);
