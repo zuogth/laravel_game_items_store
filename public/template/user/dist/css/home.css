@@ -1,5 +1,5 @@
 
-.name-product{
+.name-product {
     font-size: 1.1rem;
 }
 
@@ -10,38 +10,47 @@
     line-height: 2em;
 }
 
+.info-admin-modal {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.sidebar-user {
+    color: white;
+    font-weight: bold;
+}
 
 /*// Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
-    html{
+    html {
         font-size: 10px;
     }
 }
 
 /*// Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) and (max-width: 767.98px) {
-    html{
+    html {
         font-size: 10px;
     }
 }
 
 /*// Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) and (max-width: 991.98px) {
-    html{
+    html {
         font-size: 12px;
     }
 }
 
 /*// Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    html{
+    html {
         font-size: 12px;
     }
 }
 
 /*// Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
-    html{
+    html {
         font-size: 14px;
     }
 }

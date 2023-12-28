@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\bill;
 
 use App\Http\Controllers\Controller;
+use App\Http\Notification\Telegram;
 use App\Http\Services\bill\BillService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -47,6 +48,7 @@ class BillController extends Controller
             $qr = $this->billService->callApiQR($content, $amount)->getData();
         }
 
+        Telegram::sendMessage($bill_code);
         return view($viewName, [
             'title' => 'Thanh toán',
             'qr' => $qr,
