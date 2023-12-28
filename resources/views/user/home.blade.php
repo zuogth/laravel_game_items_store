@@ -65,7 +65,6 @@
                 </div>
             @endforeach
         </div>
-
     </div>
 
 
@@ -121,4 +120,34 @@
 
     </div>
 
+
+    <div class="modal fade" id="modal-lg">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="color: red"><i class="fas fa-bullhorn"></i>
+                        <span>Chào mừng bạn đến với SHOP của LAIANHMINH</span>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>Tặng thêm 1 ngày cho tất cả các gói thuê UGPHONE</div>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <div><span class="info-admin-modal">Cảm ơn quý khách hàng đã tin tưởng!</span></div>
+                        <div>Số điện thoại: <span class="info-admin-modal">0975817230</span></div>
+                        <div>Chủ tài khoản: <span class="info-admin-modal">LAI ANH MINH</span></div>
+                        <div>Ngân hàng: <span class="info-admin-modal">MB - Ngân hàng TMCP Quân đội - 4401082000</span>
+                        </div>
+                        <div>Thẻ siêu rẻ: <span class="info-admin-modal">0888222093</span></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endsection
