@@ -170,6 +170,7 @@ class BillService
                 ->join('PRODUCT','PRODUCT.id','=','BILL.product_id')
                 ->where('BILL.user_id','=',$userId)
                 ->select('BILL.*','PRODUCT.code as product_code')
+                ->orderBy('BILL.bill_date','desc')
                 ->get();
         }catch (\Exception $ex){
             Log::error($ex->getTraceAsString());

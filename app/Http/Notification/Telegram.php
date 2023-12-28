@@ -3,7 +3,7 @@
 namespace App\Http\Notification;
 
 use GuzzleHttp\Client;
-use App\Http\Services\notification\Exception;
+use Illuminate\Support\Facades\Log;
 
 class Telegram
 {
@@ -30,10 +30,10 @@ class Telegram
             $arr_body = json_decode($body);
 
             if ($arr_body->ok) {
-                echo "Message posted.";
+                Log::info("Message posted.");
             }
         } catch (\Exception $e) {
-            echo $e->getMessage();
+            Log::error($e->getMessage());
         }
     }
 }

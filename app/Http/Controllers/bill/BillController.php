@@ -49,7 +49,6 @@ class BillController extends Controller
             $qr = $this->billService->callApiQR($content, $amount)->getData();
         }
 
-        Telegram::sendMessage($bill_code);
         return view($viewName, [
             'title' => 'Thanh toán',
             'qr' => $qr,
@@ -69,7 +68,7 @@ class BillController extends Controller
         if (!$bill) {
             return redirect()->back();
         }
-
+//        Telegram::sendMessage($request->input('bill_code'));
         return redirect()->route('show_bill', [
             'bill_code' => $request->input('bill_code')
         ]);

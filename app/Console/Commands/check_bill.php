@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Http\Services\bill\BillService;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 
 
 class check_bill extends Command
@@ -36,7 +35,6 @@ class check_bill extends Command
      */
     public function handle()
     {
-        Log::info("RUN SCHEDULE CHECK PAY BILL");
         $this->billService->checkBill();
     }
 }
