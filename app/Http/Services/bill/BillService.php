@@ -2,8 +2,10 @@
 
 namespace App\Http\Services\bill;
 
+use App\Http\Services\product\ProductService;
 use App\Mail\MyMail;
 use App\Models\Bill;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,25 +19,38 @@ class BillService
     public function store(Request $request): bool
     {
         try {
+
+            $billExpire = $this->checkBillExpireByUser($request->input('user_id'));
+            if(!$billExpire){
+                return false;
+            }
+            $quantityProd = $this->checkQuantity($request->input('product_id'),$request->input('quantity'));
+            if(!$quantityProd){
+                return false;
+            }
+
             $expire = $this->getExpireDate();
+
+            Bill::create([
+                'product_id' => $request->input('product_id'),
+                'expire_date' => $expire,
+                'bill_code' => $request->input('bill_code'),
+                'price' => $request->input('price'),
+                'quantity' => $request->input('quantity'),
+                'total_price' => $request->input('quantity') * $request->input('price'),
+                'status' => '1',
+                'id_game' => (string)$request->input('id_game'),
+                'pay_type' => (string)$request->input('pay_type'),
+                'user_id'=>$request->input('user_id')
+            ]);
 
             DB::table('PRODUCT')
                 ->where('PRODUCT.id', '=', (string)$request->input('product_id'))
                 ->decrement('PRODUCT.total_quantity',(int)$request->input('quantity'));
 
-            Bill::create([
-                'product_id' => (string)$request->input('product_id'),
-                'expire_date' => $expire,
-                'bill_code' => $request->input('bill_code'),
-                'price' => $request->input('price'),
-                'quantity' => (string)$request->input('quantity'),
-                'total_price' => $request->input('quantity') * $request->input('price'),
-                'status' => '1',
-                'id_game' => (string)$request->input('id_game'),
-                'pay_type' => (string)$request->input('pay_type')
-            ]);
         } catch (\Exception $ex) {
-            Log::error($ex);
+            Log::error($ex->getTraceAsString());
+            Session::flash('error', 'Có lỗi xảy ra, xin thử lại sau!');
             return false;
         }
         return true;
@@ -51,7 +66,7 @@ class BillService
                 ->select('BILL.*', 'PRODUCT.code as product_code')
                 ->first();
         } catch (\Exception $ex) {
-            Log::error($ex->getMessage());
+            Log::error($ex->getTraceAsString());
             return new Bill();
         }
     }
@@ -69,7 +84,7 @@ class BillService
             Session::flash('success', 'Đã xác nhận thanh toán, xin đợi hệ thống xử lý');
 
         } catch (\Exception $ex) {
-            Log::error($ex->getMessage());
+            Log::error($ex->getTraceAsString());
             Session::flash('error', 'Có lỗi xảy ra, xin thử lại sau!');
             return false;
         }
@@ -97,9 +112,6 @@ class BillService
                 // Access the response body as an array or JSON object
                 $data = $response->json();
 
-                // Process the data as needed
-                // ...
-
                 return response()->json($data);
             } else {
                 // Handle the error
@@ -110,7 +122,7 @@ class BillService
             }
         } catch (\Exception $ex) {
 
-            Log::error($ex->getMessage());
+            Log::error($ex->getTraceAsString());
             return response()->json(['error' => $ex->getMessage(), 'code' => 'ERROR']);
         }
     }
@@ -133,7 +145,7 @@ class BillService
                 ->where('BILL.expire_date', '<=', now())
                 ->update(['BILL.status' => '-2']);
         } catch (\Exception $ex) {
-            Log::error($ex);
+            Log::error($ex->getTraceAsString());
             return false;
         }
         Log::info('UPDATED CHECK PAY BILL');
@@ -150,9 +162,52 @@ class BillService
                 ->select(\DB::raw('SUBSTRING(bill_code,1,15) as bill_code'), 'BILL.bill_date', 'BILL.pay_type', 'BILL.total_price')->get();
             return $bills;
         } catch (\Exception $ex) {
-            Log::error($ex);
+            Log::error($ex->getTraceAsString());
             return [];
         }
+    }
+
+    private function checkBillExpireByUser($user_id): bool
+    {
+        try {
+            $bill_expire = DB::table('BILL')
+                ->where('user_id','=',$user_id)
+                ->where(function ($query){
+                    $query->where('status','=','-1')
+                        ->orWhere('status','=','-2');
+                })
+                ->selectRaw('count(*) as bill_expire')
+                ->first();
+            if(!$bill_expire || $bill_expire->bill_expire >= 5){
+                Session::flash('error', 'Tài khoản cua bạn ta thời không thể giao dịch do vi phạm quá số lần đơn hàng không hoàn thành. Vui lòng liên hệ quản trị viên để thêm thông tin!');
+                return false;
+            }
+        }catch (\Exception $ex){
+            Log::error($ex->getTraceAsString());
+            Session::flash('error', 'Có lỗi xảy ra, xin thử lại sau!');
+            return false;
+        }
+        return true;
+    }
+
+    private function checkQuantity($productId,$quantity): bool
+    {
+        try {
+            $product = DB::table('PRODUCT')
+                ->where('id','=',$productId)
+                ->where('total_quantity','>=',$quantity)
+                ->first();
+
+            if(!$product){
+                Session::flash('error', 'Sản phẩm này hiện không tồn tại hoặc số lượng không đủ!');
+                return false;
+            }
+        }catch (\Exception $ex){
+            Log::error($ex->getTraceAsString());
+            Session::flash('error', 'Có lỗi xảy ra, xin thử lại sau!');
+            return false;
+        }
+        return true;
     }
 
     private function getExpireDate(): Carbon

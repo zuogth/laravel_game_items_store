@@ -14,7 +14,7 @@ class CategoryService
                 ->where("status", $status)
                 ->select('CATEGORY.*')->get();;
         } catch (\Exception $ex) {
-            Log::error($ex);
+            Log::error($ex->getTraceAsString());
             return [];
         }
     }

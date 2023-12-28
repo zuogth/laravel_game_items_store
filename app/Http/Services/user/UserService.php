@@ -74,7 +74,7 @@ class UserService
             $user->save();
 
         }catch (\Exception $ex){
-            Log::error($ex->getMessage());
+            Log::error($ex->getTraceAsString());
             Session::flash('error','Có lỗi xảy ra, xin thử lại sau!');
             return false;
         }
@@ -98,7 +98,7 @@ class UserService
             Mail::to($email)->send(new MailResetPW($email,$password));
 
         }catch (\Exception $ex){
-            Log::error($ex->getMessage());
+            Log::error($ex->getTraceAsString());
             Session::flash('error','Có lỗi xảy ra, xin thử lại sau!');
             return false;
         }

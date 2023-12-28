@@ -21,7 +21,7 @@ class ProductService
                 ->selectRaw('if(PRODUCT.sold is null,0,PRODUCT.sold) as sold')
                 ->get();
         } catch (\Exception $ex) {
-            Log::error($ex);
+            Log::error($ex->getTraceAsString());
             return [];
         }
     }
@@ -39,10 +39,19 @@ class ProductService
                 ->where('PRODUCT.code', $code)
                 ->first();
         } catch (\Exception $ex) {
-            Log::error($ex);
+            Log::error($ex->getTraceAsString());
             return new Product;
         }
+    }
 
+    public function findById($id)
+    {
+        try {
+            return Product::find($id);
+        } catch (\Exception $ex) {
+            Log::error($ex->getTraceAsString());
+            return new Product;
+        }
     }
 
     public function findByCate($cateId)
@@ -53,7 +62,7 @@ class ProductService
                 ->select('PRODUCT.*')->get();
             return $products;
         } catch (\Exception $ex) {
-            Log::error($ex);
+            Log::error($ex->getTraceAsString());
             return [];
         }
     }
@@ -69,7 +78,7 @@ class ProductService
                 ->select('PRODUCT.name', 'PRODUCT.price', 'PRODUCT.id', 'PRODUCT.code', 'PRODUCT.total_quantity', 'PRODUCT.sold', 'b.name as category_name')
                 ->get();
         } catch (\Exception $ex) {
-            Log::error($ex);
+            Log::error($ex->getTraceAsString());
             return [];
         }
     }

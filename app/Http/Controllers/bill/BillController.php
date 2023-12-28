@@ -64,7 +64,6 @@ class BillController extends Controller
     {
         $bill = $this->billService->store($request);
         if (!$bill) {
-            Session::flash('error', 'Có lỗi xảy ra, xin thử lại sau!');
             return redirect()->back();
         }
 

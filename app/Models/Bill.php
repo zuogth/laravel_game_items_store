@@ -22,11 +22,17 @@ class Bill extends Model
         'total_price',
         'status',
         'id_game',
-        'pay_type'
+        'pay_type',
+        'user_id'
     ];
 
     public function product()
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 }

@@ -19,7 +19,7 @@ class AdminBillService
                 ->get();
             return $bills;
         } catch (\Exception $ex) {
-            Log::error($ex);
+            Log::error($ex->getTraceAsString());
             return [];
         }
     }
@@ -42,7 +42,7 @@ class AdminBillService
                 return response()->json(["STATUS" => 200, "MESSAGES" => 'Cập trạng thái mới của hoá đơn là: ' . Utils::statusToString($billNew->status)]);
             }
         } catch (\Exception $ex) {
-            Log::error($ex);
+            Log::error($ex->getTraceAsString());
             return response()->json(["STATUS" => 500, "MESSAGES" => 'Cập trạng thái hoá đơn thất bại '], 500);
         }
 
