@@ -61,7 +61,7 @@ class UserService
     public function changePass($request)
     {
         try {
-            $user = User::find((string)$request->input('id-user'));
+            $user = Auth::user();
             if(!$user){
                 Session::flash('error','Không thấy thông tin tài khoản');
                 return false;

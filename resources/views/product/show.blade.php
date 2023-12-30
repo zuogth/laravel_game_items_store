@@ -65,8 +65,6 @@
                     </div>
                 </div>
                 <input type="number" name="product_id" class="form-control" value="{{$product->id}}" hidden>
-                <input type="number" name="user_id" class="form-control"
-                       value="{{\Illuminate\Support\Facades\Auth::user() ? \Illuminate\Support\Facades\Auth::user()->id:0}}" hidden>
                 <input type="text" name="bill_code" class="form-control" value="{{$bill_code}}" hidden>
                 <input type="text" name="price" class="form-control" value="{{$product->price}}" hidden>
                 <input type="number" name="sold" class="form-control" value="{{$product->sold}}" hidden>

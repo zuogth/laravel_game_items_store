@@ -68,7 +68,6 @@ class BillController extends Controller
         if (!$bill) {
             return redirect()->back();
         }
-//        Telegram::sendMessage($request->input('bill_code'));
         return redirect()->route('show_bill', [
             'bill_code' => $request->input('bill_code')
         ]);
@@ -83,6 +82,17 @@ class BillController extends Controller
         }
 
         return redirect()->route('home');
+    }
+
+    public function historyConfirm($param)
+    {
+
+        $bill = $this->billService->confirmPay($param);
+        if (!$bill) {
+            return redirect()->back();
+        }
+
+        return redirect()->route('history');
     }
 
     public function history()

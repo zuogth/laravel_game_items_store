@@ -45,7 +45,9 @@ Route::prefix('/')->group(function () {
         #Bill
         Route::post('/payment/{bill_code}', [BillController::class, 'store']);
         Route::get('/payment/{bill_code}', [BillController::class, 'index'])->name('show_bill');
-        Route::get('/bills/history', [BillController::class, 'history']);
+        Route::get('/bills/history', [BillController::class, 'history'])->name('history');
+
+        Route::get('/bills/history/confirm/{bill_code}', [BillController::class, 'historyConfirm']);
 
         Route::get('/payment/confirm/{bill_code}', [BillController::class, 'confirmPay']);
 

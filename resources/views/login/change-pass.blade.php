@@ -34,8 +34,6 @@
                             <span class="errorMessage"></span>
                         </div>
                     </div>
-                    <input type="text" id="id-user" name="id-user"
-                           value="{{\Illuminate\Support\Facades\Auth::user() ? \Illuminate\Support\Facades\Auth::user()->id : 0}}" hdden>
                     <div class="card-footer d-flex justify-content-between">
                         <button type="submit" id="login" class="btn btn-dark btn-sm w-50 m-2">Đồng ý</button>
                         <a href="/" class="btn btn-outline-dark btn-sm w-50 m-2">Quay lại</a>

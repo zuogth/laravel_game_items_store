@@ -24,6 +24,7 @@
                         <th class="text-center hidemobile">Tổng tiền</th>
                         <th class="text-center hidemobile">Trạng thái</th>
                         <th class="text-center hidemobile">Phương thức</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -59,6 +60,11 @@
                             </td>
                             <td class="text-center">
                                 {!! \App\Helpers\Helper::convertPayType($bill->pay_type) !!}
+                            </td>
+                            <td>
+                                @if($bill->status == '1')
+                                    <a href="{{'/bills/history/confirm/'.$bill->bill_code}}" class="btn btn-block btn-success btn-sm">Xác nhận thanh toán</a>
+                                @endif
                             </td>
 
                         </tr>

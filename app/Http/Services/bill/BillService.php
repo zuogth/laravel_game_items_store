@@ -2,12 +2,14 @@
 
 namespace App\Http\Services\bill;
 
+use App\Http\Notification\Telegram;
 use App\Http\Services\product\ProductService;
 use App\Mail\MyMail;
 use App\Models\Bill;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -19,6 +21,11 @@ class BillService
     public function store(Request $request): bool
     {
         try {
+
+            $user = Auth::user();
+            if(!$user){
+                return false;
+            }
 
             $quantityProd = $this->checkQuantity($request->input('product_id'),$request->input('quantity'));
             if(!$quantityProd){
@@ -37,7 +44,7 @@ class BillService
                 'status' => '1',
                 'id_game' => (string)$request->input('id_game'),
                 'pay_type' => (string)$request->input('pay_type'),
-                'user_id'=>$request->input('user_id')
+                'user_id'=>$user->id
             ]);
 
             DB::table('PRODUCT')
@@ -74,8 +81,7 @@ class BillService
                 ->where('BILL.bill_code', '=', $bill_code)
                 ->update(['BILL.status' => '2']);
 
-            $mailTo = env('MAIL_TO_ADDRESS');
-            Mail::to($mailTo)->send(new MyMail($bill_code));
+            Telegram::sendMessage($bill_code);
 
             Session::flash('success', 'Đã xác nhận thanh toán, xin đợi hệ thống xử lý');
 
