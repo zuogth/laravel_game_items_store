@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="form-group col-sm-4">
-                            <label for="id_game">ID Game</label>
+                            <label for="id_game">ID (ex:ID UGPhone)</label>
                             <input type="text" name="id_game" class="form-control" id="id_game">
                             <div class="modal-errorMessage">
                                 <span class="errorMessage"></span>
@@ -88,7 +88,7 @@
             formGroupSelector: '.form-group',
             rules: [
                 validation.isRequired("#quantity", "Bạn hãy nhập số lượng muốn mua"),
-                validation.isRequired("#id_game", "Bạn hãy nhập ID Game của bạn"),
+                validation.isRequired("#id_game", "Bạn hãy nhập ID (ex:ID UGPhone) của bạn"),
                 validation.isMin("#quantity", min = 0, `Số lượng muốn mua phải lớn hơn ${min}`),
                 validation.isMax("#quantity", max = total_quantity, `Số lượng muốn mua phải nhỏ hơn hoặc bằng ${max}`),
                 validation.isRequired("#pay_type", "Bạn hãy chọn phương thức thanh toán")

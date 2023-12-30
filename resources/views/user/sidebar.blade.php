@@ -65,19 +65,20 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/information" class="nav-link">
-                        <i class="nav-icon far fa-user"></i>
-                        <p>
-                            Quản trị viên
-                        </p>
-                    </a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a href="/information" class="nav-link">--}}
+{{--                        <i class="nav-icon far fa-user"></i>--}}
+{{--                        <p>--}}
+{{--                            Quản trị viên--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 @if(\Illuminate\Support\Facades\Auth::user())
                     @if (\Illuminate\Support\Facades\Auth::user()->role == 'QL')
+                        <li class="nav-header">ADMIN</li>
                         <li class="nav-item">
                             <a href="/admin/bill" class="nav-link">
-                                <i class="nav-icon fas fa-home"></i>
+                                <i class="far fa-money-bill-alt"></i>
                                 <p>
                                     Quản lý đơn hàng
                                 </p>
@@ -100,6 +101,7 @@
                                 </p>
                             </a>
                         </li>
+                    @endif
                         <li class="nav-item">
                             <a href="/logout" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -108,7 +110,6 @@
                                 </p>
                             </a>
                         </li>
-                    @endif
                 @endif
             </ul>
         </nav>

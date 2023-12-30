@@ -31,3 +31,12 @@ function convertPayType(payType) {
     }
     return "";
 }
+
+//Hàm chuyển định dạng tiền
+function toMoney(totalprice) {
+    return totalprice.toLocaleString('it-IT', {
+        style: 'currency',
+        currency: 'VND'
+    });
+}
+

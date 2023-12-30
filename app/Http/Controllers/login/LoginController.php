@@ -20,7 +20,7 @@ class LoginController extends Controller
     public function index()
     {
         return view('login.login', [
-            'title' => 'Login'
+            'title' => 'Đăng nhập'
         ]);
     }
 

@@ -22,7 +22,7 @@
                         <tbody>
                         @foreach($products as $product)
                             <tr>
-                                <td>{!! $product->name !!}</td>
+                                <td class="name-product">{!! $product->name !!}</td>
                                 <td class="text-center">
                                     <button class="btn btn-block btn-outline-success btn-sm">
                                         <span class="span-btn">Còn lại:<b> {{$product->total_quantity}}</b></span>

@@ -143,6 +143,7 @@
                         <div>Ngân hàng: <span class="info-admin-modal">MB - Ngân hàng TMCP Quân đội - 4401082000</span>
                         </div>
                         <div>Thẻ siêu rẻ: <span class="info-admin-modal">0888222093</span></div>
+                        <div>Thời gian hoạt động: <span class="info-admin-modal">12h00-24h00</span></div>
                     </div>
                 </div>
             </div>
