@@ -8,7 +8,7 @@ use App\Http\Services\product\ProductService;
 
 class AdminBillController extends Controller
 {
-    protected ProductService $adminBillService;
+    protected AdminBillService $adminBillService;
 
     public function __construct(AdminBillService $adminBillService)
     {
