@@ -26,7 +26,7 @@ class BillController extends Controller
             return redirect('/notfound');
         }
         $bill_code = $bill->bill_code;
-        $expire = $bill->expire_date;
+        $expire = $bill->expire_date_format;
 
         $qr = null;
 

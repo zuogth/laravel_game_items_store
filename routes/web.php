@@ -38,10 +38,11 @@ Route::prefix('/')->group(function () {
     Route::get('/forgot', [PasswordController::class, 'forgot']);
     Route::post('/forgot', [PasswordController::class, 'resetPass']);
 
-    #Products
-    Route::get('/products/{code}', [ProductController::class, 'show']);
+
 
     Route::middleware('auth')->group(function () {
+        #Products
+        Route::get('/products/{code}', [ProductController::class, 'show']);
 
         #Bill
         Route::post('/payment/{bill_code}', [BillController::class, 'store']);

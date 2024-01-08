@@ -120,5 +120,8 @@
                 </div>
             </div>
             <input type="text" id="expire_date" value="{{$expireDate}}" hidden>
-            <script src="/template/user/js/bill.js"></script>
+
+@endsection
+@section('lib')
+                <script src="/template/user/js/bill.js"></script>
 @endsection
