@@ -48,7 +48,18 @@
                                 </button>
                             </td>
                             <td class="text-center">{{$product->category_code}}</td>
-                            <td class="text-center">{{$product->status}}</td>
+                            <td class="text-center">
+                                <div class="custom-control custom-switch">
+                                    @if($product->status == 1)
+                                        <input type="checkbox" class="custom-control-input" id="{{$product->code}}"
+                                               value="{{$product->status}}" checked>
+                                    @else
+                                        <input type="checkbox" class="custom-control-input" id="{{$product->code}}"
+                                               value="{{$product->status}}">
+                                    @endif
+                                    <label class="custom-control-label" for="{{$product->code}}"></label>
+                                </div>
+                            </td>
                             <td class="text-center"></td>
                         </tr>
                     @endforeach
@@ -61,4 +72,5 @@
 
 @endsection
 @section('lib')
+    <script src="/template/admin/js/product.js"></script>
 @endsection

@@ -2,6 +2,8 @@
 
 namespace App\Http\Services\product;
 
+use App\Helpers\Utils;
+use App\Models\Bill;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -83,6 +85,28 @@ class ProductService
         } catch (\Exception $ex) {
             Log::error($ex->getTraceAsString());
             return [];
+        }
+    }
+
+    public function updateProductStatus($request, $code)
+    {
+        try {
+            if (Product::where("CODE", $code)->exists()) {
+                $product = Product::where("CODE", $code)->first();
+                if (is_null($request->status)) {
+                    Log::error("PRODUCT STATUS DOES NOT NULL");
+                    throw new \Exception();
+                }
+
+                $product->status = $request->status;
+                $product->save();
+                return response()->json(["STATUS" => 200, "MESSAGES" => 'Cập trạng thái sản phẩm thành công']);
+            } else {
+                return response()->json(["STATUS" => 500, "MESSAGES" => 'Sản phẩm không tồn tại'], 500);
+            }
+        } catch (\Exception $ex) {
+            Log::error($ex->getTraceAsString());
+            return response()->json(["STATUS" => 500, "MESSAGES" => 'Cập trạng thái sản phẩm thất bại'], 500);
         }
     }
 }
