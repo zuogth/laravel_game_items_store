@@ -3,7 +3,7 @@
     @include('user.alert')
     <div class="col-md-12">
         <!-- jquery validation -->
-        <div class="card card-primary w-50 m-auto">
+        <div class="card card-primary m-auto col-md-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <div class="card-header">
                 <h3 class="card-title">{{$title}}</h3>
             </div>

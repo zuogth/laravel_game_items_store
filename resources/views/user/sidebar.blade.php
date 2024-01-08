@@ -65,17 +65,26 @@
                         </p>
                     </a>
                 </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a href="/information" class="nav-link">--}}
-{{--                        <i class="nav-icon far fa-user"></i>--}}
-{{--                        <p>--}}
-{{--                            Quản trị viên--}}
-{{--                        </p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
                 @if(\Illuminate\Support\Facades\Auth::user())
                     @if (\Illuminate\Support\Facades\Auth::user()->role == 'QL')
                         <li class="nav-header">ADMIN</li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fab fa-product-hunt"></i>
+                                <p>
+                                    Sản phẩm
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/admin/product/UGPHONE" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ugphone</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a href="/admin/bill" class="nav-link">
                                 <i class="far fa-money-bill-alt"></i>
@@ -102,14 +111,14 @@
                             </a>
                         </li>
                     @endif
-                        <li class="nav-item">
-                            <a href="/logout" class="nav-link">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <p>
-                                    Đăng xuất
-                                </p>
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>
+                                Đăng xuất
+                            </p>
+                        </a>
+                    </li>
                 @endif
             </ul>
         </nav>

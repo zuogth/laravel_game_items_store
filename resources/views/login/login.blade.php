@@ -3,7 +3,7 @@
     @include('user.alert')
     <div class="col-md-12">
         <!-- jquery validation -->
-        <div class="card card-primary w-50 m-auto">
+        <div class="card card-primary m-auto col-md-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <div class="card-header">
                 <h3 class="card-title">{{$title}}</h3>
             </div>
@@ -29,9 +29,12 @@
                         </div>
                     </div>
 
-                    <div class="card-footer d-flex justify-content-between">
-                        <button type="submit" id="login" class="btn btn-dark btn-sm w-50 m-2">Đăng nhập</button>
-                        <a href="/forgot" class="btn btn-outline-dark btn-sm w-50 m-2">Quên mật khẩu?</a>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" id="login" class="btn btn-dark btn-sm w-50 m-2">Đăng nhập</button>
+                            <a href="/register" class="btn btn-outline-dark btn-sm w-50 m-2">Đăng ký</a>
+                        </div>
+                        <div class="d-flex justify-content-end"><a href="/forgot" class="m-2">Quên mật khẩu?</a></div>
                     </div>
                     @csrf
                 </div>

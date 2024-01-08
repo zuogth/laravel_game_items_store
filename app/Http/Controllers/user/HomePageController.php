@@ -42,7 +42,7 @@ class HomePageController extends Controller
 
     public function category($code)
     {
-        $result = $this->productService->findByCateCode($code);
+        $result = $this->productService->findByCateCodeAndStatus($code, 1);
         if (!is_null($result->first())) {
             return view('product.products', [
                 'title' => $result->first()->category_name,
