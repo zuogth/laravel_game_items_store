@@ -69,11 +69,19 @@
                     @if (\Illuminate\Support\Facades\Auth::user()->role == 'QL')
                         <li class="nav-header">ADMIN</li>
                         <li class="nav-item">
+                            <a href="/admin/dashboard" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="fab fa-product-hunt"></i>
+                                <i class="nav-icon fab fa-product-hunt"></i>
                                 <p>
                                     Sản phẩm
-                                    <i class="right fas fa-angle-left"></i>
+                                    <i class="nav-icon right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
@@ -87,7 +95,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="/admin/bill" class="nav-link">
-                                <i class="far fa-money-bill-alt"></i>
+                                <i class="nav-icon far fa-money-bill-alt"></i>
                                 <p>
                                     Quản lý đơn hàng
                                 </p>

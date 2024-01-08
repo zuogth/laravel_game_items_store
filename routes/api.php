@@ -23,5 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::put('/admin/bill/{id}', [AdminBillApi::class, 'update']);
 
 #product
-Route::put('/admin/product/{productCode}', [\App\Http\Controllers\Api\AdminProductApi::class, 'updateStatus']);
+Route::put('/admin/product/status/{productCode}', [\App\Http\Controllers\Api\AdminProductApi::class, 'updateStatus']);
+Route::put('/admin/product/status', [\App\Http\Controllers\Api\AdminProductApi::class, 'controlStatus']);
+
 

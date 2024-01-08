@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services\admin\bill;
+namespace App\Http\Services\admin;
 
 use App\Helpers\Utils;
 use App\Models\Bill;

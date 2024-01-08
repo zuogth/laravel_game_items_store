@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Services\admin\bill\AdminBillService;
+use App\Http\Services\admin\AdminBillService;
 use Illuminate\Http\Request;
 
 class AdminBillApi extends Controller

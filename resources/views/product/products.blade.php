@@ -25,7 +25,7 @@
                                 <td class="name-product">{!! $product->name !!}</td>
                                 <td class="text-center">
                                     <button class="btn btn-block btn-outline-success btn-sm">
-                                        <span class="span-btn">Còn lại:<b> {{$product->total_quantity}}</b></span>
+                                        <span class="span-btn">Còn lại:<b> {{$product->status != 2 ? $product->total_quantity : 0}}</b></span>
                                     </button>
                                 </td>
                                 <td class="text-center">
@@ -43,13 +43,12 @@
                                     </button>
                                 </td>
                                 <td class="text-center">
-                                    @if($product->total_quantity > 0)
+                                    @if($product->total_quantity > 0 && $product->status != 2)
                                         <a href="/products/{{$product->code}}" class="btn btn-primary btn-sm">
                                             <i class="fas fa-cart-arrow-down"></i>
                                             MUA NGAY
                                         </a>
-                                    @endif
-                                    @if($product->total_quantity == 0)
+                                    @else
                                         <button class="btn btn-primary btn-sm" disabled>
                                             <i class="fal fa-sad-tear"></i>
                                             HẾT HÀNG

@@ -1,17 +1,18 @@
 $(document).on("click", ".custom-control-input", function () {
     let productCode = $(this).attr('id');
-    let status = $(this).val() == 1 ? 0 : 1
-    callApiUpdateStatus(productCode, status, $(this).val(status))
+    let status = +$(this).val() == 1 ? 2 : 1
+
+    callApiUpdateStatus(productCode, status)
 });
 
 
-function callApiUpdateStatus(productCode, status, afterCallApiSuccess) {
+function callApiUpdateStatus(productCode, status) {
     let data = JSON.stringify({
         "status": status
     });
     $.ajax({
         type: "put",
-        url: "/api/admin/product/status/" + productCode,
+        url: "/api/admin/product/status",
         contentType: "application/json",
         dataType: 'Json',
         data: data,
@@ -21,7 +22,7 @@ function callApiUpdateStatus(productCode, status, afterCallApiSuccess) {
                 '',
                 'success'
             ).then((result) => {
-                afterCallApiSuccess;
+                location.reload();
 
             })
         },

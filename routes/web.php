@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\bill\AdminBillController;
+use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\product\AdminProductController;
 use App\Http\Controllers\bill\BillController;
 use App\Http\Controllers\login\LoginController;
@@ -39,7 +40,6 @@ Route::prefix('/')->group(function () {
     Route::post('/forgot', [PasswordController::class, 'resetPass']);
 
 
-
     Route::middleware('auth')->group(function () {
         #Products
         Route::get('/products/{code}', [ProductController::class, 'show']);
@@ -64,10 +64,10 @@ Route::prefix('/')->group(function () {
 });
 Route::middleware(['auth', 'role'])->group(function () {
     Route::prefix('/admin')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index']);
         Route::get('/bill', [AdminBillController::class, 'index']);
         Route::get('/bill-ajax', [AdminBillController::class, 'index']);
         Route::get('/product/{cateCode}', [AdminProductController::class, 'index']);
-
     });
 });
 

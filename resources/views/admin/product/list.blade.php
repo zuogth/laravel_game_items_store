@@ -2,12 +2,14 @@
 
 @section('content')
     <div class="col-12">
-
         <br/>
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">{{$title}}</h3>
+                <div>
+                    <h3 class="card-title">{{$title}}</h3>
+                </div>
             </div>
+
             <!-- /.card-header -->
             <div class="card-body">
                 <table id="common-datatable" class="table table-bordered table-hover">
@@ -49,16 +51,24 @@
                             </td>
                             <td class="text-center">{{$product->category_code}}</td>
                             <td class="text-center">
-                                <div class="custom-control custom-switch">
-                                    @if($product->status == 1)
+
+                                @if($product->status == 1)
+                                    <div class="custom-control custom-switch">
                                         <input type="checkbox" class="custom-control-input" id="{{$product->code}}"
                                                value="{{$product->status}}" checked>
-                                    @else
+                                        <label class="custom-control-label" for="{{$product->code}}"></label>
+                                    </div>
+                                @elseif($product->status == 2)
+                                    <button name="status" class="btn btn-block btn-danger btn-sm">Pending
+                                    </button>
+                                @elseif($product->status == 0)
+                                    <div class="custom-control custom-switch">
                                         <input type="checkbox" class="custom-control-input" id="{{$product->code}}"
                                                value="{{$product->status}}">
-                                    @endif
-                                    <label class="custom-control-label" for="{{$product->code}}"></label>
-                                </div>
+                                        <label class="custom-control-label" for="{{$product->code}}"></label>
+                                    </div>
+                                @endif
+
                             </td>
                             <td class="text-center"></td>
                         </tr>

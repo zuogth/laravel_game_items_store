@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\admin\bill;
 
 use App\Http\Controllers\Controller;
-use App\Http\Services\admin\bill\AdminBillService;
+use App\Http\Services\admin\AdminBillService;
+use App\Http\Services\product\ProductService;
 
 class AdminBillController extends Controller
 {
-    protected AdminBillService $adminBillService;
+    protected ProductService $adminBillService;
 
     public function __construct(AdminBillService $adminBillService)
     {
