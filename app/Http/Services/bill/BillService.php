@@ -67,6 +67,7 @@ class BillService
                 ->where('BILL.bill_code', '=', $billCode)
                 ->where('BILL.status', '=', '1')
                 ->select('BILL.*', 'PRODUCT.code as product_code')
+                ->selectRaw("DATE_FORMAT(BILL.expire_date, '%d/%m/%Y %H:%i:%s') as expire_date_format")
                 ->first();
         } catch (\Exception $ex) {
             Log::error($ex->getTraceAsString());
@@ -230,7 +231,7 @@ class BillService
 
     private function getExpireDate(): Carbon
     {
-        $expire = 5;
+        $expire = 15;
 
         $currentTime = Carbon::now();
         return $currentTime->addMinutes($expire);
