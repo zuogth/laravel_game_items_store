@@ -3,18 +3,19 @@
     @include('user.alert')
     <div class="col-md-12">
         <!-- jquery validation -->
-        <div class="card card-primary w-50 m-auto">
+        <div class="card card-primary m-auto col-md-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <div class="card-header">
                 <h3 class="card-title">{{$title}}</h3>
             </div>
             <br/>
 
-            <form method="POST" action=""  id="m-form-forgot-pass">
+            <form method="POST" action="" id="m-form-forgot-pass">
                 <div class="card-body">
 
                     <div class="form-group form-login-input-page">
                         <div class="l-themes-page"><label for="email">Email *</label></div>
-                        <input class="form-control" type="email" id="email" placeholder="Nhập email nhận mật khẩu *" name="email">
+                        <input class="form-control" type="email" id="email" placeholder="Nhập email nhận mật khẩu *"
+                               name="email">
                         <div class="modal-errorMessage">
                             <span class="errorMessage"></span>
                         </div>

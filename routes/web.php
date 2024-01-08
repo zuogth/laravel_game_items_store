@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\bill\AdminBillController;
+use App\Http\Controllers\admin\product\AdminProductController;
 use App\Http\Controllers\bill\BillController;
 use App\Http\Controllers\login\LoginController;
 use App\Http\Controllers\login\PasswordController;
@@ -64,6 +65,8 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::prefix('/admin')->group(function () {
         Route::get('/bill', [AdminBillController::class, 'index']);
         Route::get('/bill-ajax', [AdminBillController::class, 'index']);
+        Route::get('/product/{cateCode}', [AdminProductController::class, 'index']);
+
     });
 });
 

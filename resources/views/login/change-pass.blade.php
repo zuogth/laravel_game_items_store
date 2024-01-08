@@ -3,7 +3,7 @@
     @include('user.alert')
     <div class="col-md-12">
         <!-- jquery validation -->
-        <div class="card card-primary w-50 m-auto">
+        <div class="card card-primary m-auto col-md-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <div class="card-header">
                 <h3 class="card-title">{{$title}}</h3>
             </div>
@@ -14,14 +14,16 @@
 
                     <div class="form-group form-login-input-page">
                         <div class="l-themes-page"><label for="password">Mật khẩu cũ *</label></div>
-                        <input type="password" id="password" class="form-control" placeholder="Nhập mật khẩu cũ *" name="password">
+                        <input type="password" id="password" class="form-control" placeholder="Nhập mật khẩu cũ *"
+                               name="password">
                         <div class="modal-errorMessage">
                             <span class="errorMessage"></span>
                         </div>
                     </div>
                     <div class="form-group form-login-input-page">
                         <div class="l-themes-page"><label for="password-new">Mật khẩu mới *</label></div>
-                        <input type="password" id="password-new" class="form-control" placeholder="Nhập mật khẩu mới *" name="password-new">
+                        <input type="password" id="password-new" class="form-control" placeholder="Nhập mật khẩu mới *"
+                               name="password-new">
                         <div class="modal-errorMessage">
                             <span class="errorMessage"></span>
                         </div>
@@ -29,7 +31,8 @@
 
                     <div class="form-group form-login-input-page">
                         <div class="l-themes-page"><label for="password-repeat">Mật khẩu mới *</label></div>
-                        <input type="password" id="password-repeat" class="form-control" placeholder="Nhập lại mật khẩu *" name="password-repeat">
+                        <input type="password" id="password-repeat" class="form-control"
+                               placeholder="Nhập lại mật khẩu *" name="password-repeat">
                         <div class="modal-errorMessage">
                             <span class="errorMessage"></span>
                         </div>
@@ -59,9 +62,9 @@
                 validation.isRequired("#password-new", "Bạn hãy nhập mật khẩu mới"),
                 validation.isMinLength("#password-new", min = 6, `Số kí tự phải lớn hơn hoặc bằng ${min}`),
                 validation.isRequired("#password-repeat", "Bạn hãy nhập lại mật khẩu"),
-                validation.isPassword_confirm("#password-repeat",()=>{
+                validation.isPassword_confirm("#password-repeat", () => {
                     return document.querySelector('#m-form-change-pass #password-new').value
-                } , "Vui lòng xác nhập lại mật khẩu")
+                }, "Vui lòng xác nhập lại mật khẩu")
 
             ],
             onSubmit: function (data) {
