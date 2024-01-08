@@ -30,10 +30,12 @@ class Telegram
             $arr_body = json_decode($body);
 
             if ($arr_body->ok) {
-                Log::info("Message posted.");
+                echo "Message posted.";
+                return;
             }
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+            return;
         }
     }
 }

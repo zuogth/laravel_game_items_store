@@ -68,6 +68,7 @@ class BillController extends Controller
         if (!$bill) {
             return redirect()->back();
         }
+
         return redirect()->route('show_bill', [
             'bill_code' => $request->input('bill_code')
         ]);
